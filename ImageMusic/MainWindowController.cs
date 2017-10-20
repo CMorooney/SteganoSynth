@@ -15,7 +15,7 @@ namespace ImageMusic
         NSImage ChosenImage;
 
         const int InFlightAudioBuffers = 2;
-        const int SamplesPerBuffer = 1024;
+        const int SamplesPerBuffer = 1000000000;
 
         AVAudioEngine AudioEngine = new AVAudioEngine();
         AVAudioPlayerNode PlayerNode = new AVAudioPlayerNode();
@@ -27,7 +27,7 @@ namespace ImageMusic
 
         // key: octave // value: frequences
         // 8 octaves, 12 frequencies per octave
-        Dictionary<int, int[]> FrequenciesByOctave;
+        FrequencyDictionary FrequenciesByOctave;
         List<int> AllFrequencies;
 
         #region Constructors
@@ -65,20 +65,23 @@ namespace ImageMusic
                         var color = imageRepresentation.ColorAt(x, y);
 
                         var carrierFrequency = (float)color.RedComponent * 1000;
-                        var modulatorFrequency = (float)color.BlueComponent * 1000;
-                        var octave = (float)color.GreenComponent * 10;
+                        var sampleLength = (uint)(color.BrightnessComponent * 10000)/2;
+                        var octave = (float)color.GreenComponent * 10000;
 
                         var closestOctave = FrequenciesByOctave.Keys.Aggregate((a, b) => Math.Abs(a - octave) < Math.Abs(b - octave) ? a : b);
-                        var closestCarrier = FrequenciesByOctave[closestOctave].Aggregate((a, b) => Math.Abs(a - carrierFrequency) < Math.Abs(b - carrierFrequency) ? a : b);
+                        var closestCarrier = AllFrequencies.Aggregate((a, b) => Math.Abs(a - carrierFrequency) < Math.Abs(b - carrierFrequency) ? a : b);
 
-                        PlayTone(closestCarrier, color, modulatorFrequency);
+                        PlayTone(closestCarrier, color, sampleLength);
                     }
                 }
             }
         }
 
-        unsafe void PlayTone(float carrierFrequency, NSColor color, float modulatorFrequency = 679f, float modulatorAmplitude = .8f)
+        unsafe void PlayTone(float carrierFrequency, NSColor color, uint sampleLength)
         {
+            const int modulatorFrequency = 697;
+            const float modulatorAmplitude = .8f;
+
             var unitVelocity = 2 * Math.PI / AudioFormat.SampleRate;
             var carrierVelocity = carrierFrequency * unitVelocity;
             var modulatorVelocity = modulatorFrequency * unitVelocity;
@@ -89,7 +92,7 @@ namespace ImageMusic
 
                 Semaphore.Wait();
 
-                Console.WriteLine($"PLAYING: {carrierFrequency}");
+                Console.WriteLine($"PLAYING: {carrierFrequency} FOR: {sampleLength}");
 
                 DispatchQueue.MainQueue.DispatchAsync (() =>
                 {
@@ -112,7 +115,7 @@ namespace ImageMusic
                 var leftChannel = outDataPointers[0];
                 var rightChannel = outDataPointers[1];
 
-                for (int sampleIndex = 0; sampleIndex < SamplesPerBuffer; sampleIndex++)
+                for (int sampleIndex = 0; sampleIndex < sampleLength; sampleIndex++)
                 {
                     var sample = (float)Math.Sin(carrierVelocity * sampleTime + modulatorAmplitude *
                                           Math.Sin(modulatorVelocity * sampleTime));
@@ -123,7 +126,7 @@ namespace ImageMusic
                     sampleTime++;
                 }
 
-                buffer.FrameLength = SamplesPerBuffer;
+                buffer.FrameLength = sampleLength;
 
                 PlayerNode.ScheduleBuffer(buffer, () =>
                 {
@@ -200,18 +203,7 @@ namespace ImageMusic
 
         void InitFrequencies()
         {
-            FrequenciesByOctave = new Dictionary<int, int[]>
-            {
-                { 0, new [] { 16, 17, 18, 20, 21, 22, 23, 25, 26, 28, 29, 31 } },
-                { 1, new [] { 33, 35, 37, 39, 41, 44, 46, 49, 52, 55, 58, 62 } },
-                { 2, new [] { 65, 69, 73, 78, 82, 87, 93, 98, 104, 110, 117, 124 } },
-                { 3, new [] { 131, 139, 147, 156, 165, 175, 185, 196, 208, 220, 233, 247 } },
-                { 4, new [] { 262, 278, 294, 311, 330, 349, 370, 392, 415, 440, 466, 494 } },
-                { 5, new [] { 523, 554, 587, 622, 659, 699, 740, 784, 831, 880, 932, 988 } },
-                { 6, new [] { 1047, 1109, 1175, 1245, 1319, 1397, 1475, 1568, 1661, 1760, 1865, 1976 } },
-                { 7, new [] { 2093, 2218, 2349, 2489, 2637, 2794, 2960, 3136, 3322, 3520, 3729, 3951 } },
-                { 8, new [] { 4186, 4435, 4699, 4978, 5274, 5588, 5920, 6272, 6645, 7040, 7459, 7902 } }
-            };
+            FrequenciesByOctave = new FrequencyDictionary();
 
             AllFrequencies = new List<int>();
             foreach (var fq in FrequenciesByOctave.Values)
