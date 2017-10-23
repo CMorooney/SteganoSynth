@@ -85,10 +85,19 @@
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Helpers\ScaleHelper.cs" />
     <Compile Include="Attributes\FriendlyNameAttribute.cs" />
+    <Compile Include="Windows\NodeEditorWindow.cs" />
+    <Compile Include="Windows\NodeEditorWindow.designer.cs">
+      <DependentUpon>NodeEditorWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\NodeEditorWindowController.cs" />
+    <Compile Include="Controllers\NodeEditorWindowController.designer.cs">
+      <DependentUpon>NodeEditorWindowController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Windows\MainWindow.xib" />
     <InterfaceDefinition Include="Menus\MainMenu.xib" />
+    <InterfaceDefinition Include="Windows\NodeEditorWindow.xib" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />

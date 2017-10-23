@@ -27,6 +27,9 @@ namespace ImageMusic
 		[Outlet]
 		AppKit.NSPopUpButton ScaleChooser { get; set; }
 
+		[Action ("EditNodesClicked:")]
+		partial void EditNodesClicked (AppKit.NSButton sender);
+
 		[Action ("ImagePicked:")]
 		partial void ImagePicked (AppKit.NSImageView sender);
 
@@ -38,11 +41,6 @@ namespace ImageMusic
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (ScaleChooser != null) {
-				ScaleChooser.Dispose ();
-				ScaleChooser = null;
-			}
-
 			if (ColorIndicator != null) {
 				ColorIndicator.Dispose ();
 				ColorIndicator = null;
@@ -61,6 +59,11 @@ namespace ImageMusic
 			if (ProgressIndicator != null) {
 				ProgressIndicator.Dispose ();
 				ProgressIndicator = null;
+			}
+
+			if (ScaleChooser != null) {
+				ScaleChooser.Dispose ();
+				ScaleChooser = null;
 			}
 		}
 	}

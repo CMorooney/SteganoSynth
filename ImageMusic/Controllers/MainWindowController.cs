@@ -29,6 +29,8 @@ namespace ImageMusic
         FrequencyDictionary FrequenciesByOctave;
         List<int> AllFrequencies;
 
+        NodeEditorWindowController NodeEditorWindowController;
+
         #region Constructors
 
         public MainWindowController(IntPtr handle) : base(handle)
@@ -146,6 +148,8 @@ namespace ImageMusic
         {
             base.WindowDidLoad();
 
+            NodeEditorWindowController = new NodeEditorWindowController();
+
             InitFrequencies();
             InitScaleChooser();
 
@@ -181,6 +185,14 @@ namespace ImageMusic
                               .Cast<Scale>()
                               .ToArray()
                               [selectedIndex];
+        }
+
+        partial void EditNodesClicked(NSButton sender)
+        {
+            if (!NodeEditorWindowController.Window?.IsVisible ?? false)
+            {
+                NodeEditorWindowController.ShowWindow(this);
+            }
         }
 
         partial void StartClicked(NSButton sender)
