@@ -13,6 +13,7 @@
                 <outlet property="ErrorLabel" destination="LWO-gL-zhx" id="ped-32-zAA"/>
                 <outlet property="PausePlayButton" destination="RP2-Yo-6cv" id="bMH-c1-F5f"/>
                 <outlet property="ProgressIndicator" destination="4H1-Gz-JYE" id="bdV-FV-guY"/>
+                <outlet property="ScaleChooser" destination="gLx-JG-HmN" id="KAF-Y6-5tU"/>
                 <outlet property="window" destination="2" id="6"/>
             </connections>
         </customObject>
@@ -66,6 +67,24 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>
+                    <popUpButton verticalHuggingPriority="750" misplaced="YES" id="gLx-JG-HmN">
+                        <rect key="frame" x="18" y="310" width="76" height="26"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" title="Scale" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="GRU-Sq-LFE" id="7Q9-fK-56w">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="Kjf-cy-HMo">
+                                <items>
+                                    <menuItem title="Scale" state="on" id="GRU-Sq-LFE"/>
+                                    <menuItem title="Item 2" id="9rk-gm-EdT"/>
+                                    <menuItem title="Item 3" id="2Zf-75-pMy"/>
+                                </items>
+                            </menu>
+                            <connections>
+                                <action selector="ScaleChosen:" target="-2" id="nrE-2i-gH9"/>
+                            </connections>
+                        </popUpButtonCell>
+                    </popUpButton>
                 </subviews>
             </view>
         </window>

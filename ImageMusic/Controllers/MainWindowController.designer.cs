@@ -24,22 +24,33 @@ namespace ImageMusic
 		[Outlet]
 		AppKit.NSProgressIndicator ProgressIndicator { get; set; }
 
+		[Outlet]
+		AppKit.NSPopUpButton ScaleChooser { get; set; }
+
 		[Action ("ImagePicked:")]
 		partial void ImagePicked (AppKit.NSImageView sender);
+
+		[Action ("ScaleChosen:")]
+		partial void ScaleChosen (AppKit.NSPopUpButtonCell sender);
 
 		[Action ("StartClicked:")]
 		partial void StartClicked (AppKit.NSButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (ScaleChooser != null) {
+				ScaleChooser.Dispose ();
+				ScaleChooser = null;
+			}
+
 			if (ColorIndicator != null) {
 				ColorIndicator.Dispose ();
 				ColorIndicator = null;
 			}
 
-			if (ProgressIndicator != null) {
-				ProgressIndicator.Dispose ();
-				ProgressIndicator = null;
+			if (ErrorLabel != null) {
+				ErrorLabel.Dispose ();
+				ErrorLabel = null;
 			}
 
 			if (PausePlayButton != null) {
@@ -47,9 +58,9 @@ namespace ImageMusic
 				PausePlayButton = null;
 			}
 
-			if (ErrorLabel != null) {
-				ErrorLabel.Dispose ();
-				ErrorLabel = null;
+			if (ProgressIndicator != null) {
+				ProgressIndicator.Dispose ();
+				ProgressIndicator = null;
 			}
 		}
 	}

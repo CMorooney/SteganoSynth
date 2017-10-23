@@ -13,6 +13,7 @@ namespace ImageMusic
     public partial class MainWindowController : NSWindowController
     {
         NSImage ChosenImage;
+        Scale? ChosenScale;
 
         const int InFlightAudioBuffers = 2;
         const int SamplesPerBuffer = 1000000000;
@@ -25,8 +26,6 @@ namespace ImageMusic
         DispatchQueue AudioQueue = new DispatchQueue("AudioQueue", false);
         SemaphoreSlim Semaphore = new SemaphoreSlim(InFlightAudioBuffers);
 
-        // key: octave // value: frequences
-        // 8 octaves, 12 frequencies per octave
         FrequencyDictionary FrequenciesByOctave;
         List<int> AllFrequencies;
 
@@ -65,11 +64,13 @@ namespace ImageMusic
                         var color = imageRepresentation.ColorAt(x, y);
 
                         var carrierFrequency = (float)color.RedComponent * 1000;
-                        var sampleLength = (uint)(color.BrightnessComponent * 10000)/2;
+                        var sampleLength = Math.Max(1024, (uint)(color.BrightnessComponent * 8000));
                         var octave = (float)color.GreenComponent * 10000;
 
                         var closestOctave = FrequenciesByOctave.Keys.Aggregate((a, b) => Math.Abs(a - octave) < Math.Abs(b - octave) ? a : b);
-                        var closestCarrier = AllFrequencies.Aggregate((a, b) => Math.Abs(a - carrierFrequency) < Math.Abs(b - carrierFrequency) ? a : b);
+
+                        var closestCarrier = ScaleHelper.GetNotesForScale(ChosenScale.Value, closestOctave).Aggregate(
+                            (a, b) => Math.Abs(a - carrierFrequency) < Math.Abs(b - carrierFrequency) ? a : b);
 
                         PlayTone(closestCarrier, color, sampleLength);
                     }
@@ -146,6 +147,7 @@ namespace ImageMusic
             base.WindowDidLoad();
 
             InitFrequencies();
+            InitScaleChooser();
 
             for (int i = 0; i < InFlightAudioBuffers; i++)
             {
@@ -168,6 +170,19 @@ namespace ImageMusic
             ChosenImage = sender.Image;
         }
 
+        partial void ScaleChosen(NSPopUpButtonCell sender)
+        {
+            //use the selected index from the actual object
+            //instead of the sender, there's something wrong
+            //where the sender is providing indexes in the thousands.
+            var selectedIndex = ScaleChooser.IndexOfSelectedItem - 1;
+
+            ChosenScale = Enum.GetValues(typeof(Scale))
+                              .Cast<Scale>()
+                              .ToArray()
+                              [selectedIndex];
+        }
+
         partial void StartClicked(NSButton sender)
         {
             if (!InputIsValid)
@@ -187,11 +202,11 @@ namespace ImageMusic
 
         #region Validation and errors
 
-        bool InputIsValid => ChosenImage?.IsValid ?? false;
+        bool InputIsValid => (ChosenImage?.IsValid ?? false) && (ChosenScale.HasValue);
 
         void ShowValidationError()
         {
-            ErrorLabel.StringValue = "No image chosen";
+            ErrorLabel.StringValue = "Please provide and image and choose a scale";
         }
 
         void ClearErrorMessage()
@@ -200,6 +215,20 @@ namespace ImageMusic
         }
 
         #endregion
+
+        void InitScaleChooser()
+        {
+            ScaleChooser.RemoveAllItems();
+
+            ScaleChooser.AddItem("Scale"); 
+
+            ScaleChooser.AddItems(
+                Enum.GetValues(typeof(Scale))
+                .Cast<Scale>()
+                .Select(s => s.GetFriendlyName())
+                .ToArray()
+            );
+        }
 
         void InitFrequencies()
         {

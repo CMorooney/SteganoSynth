@@ -70,20 +70,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
-    <Compile Include="MainWindow.cs" />
-    <Compile Include="MainWindow.designer.cs">
-      <DependentUpon>MainWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainWindowController.cs" />
-    <Compile Include="MainWindowController.designer.cs">
-      <DependentUpon>MainWindowController.cs</DependentUpon>
-    </Compile>
     <Compile Include="AppDelegate.cs" />
     <Compile Include="FrequencyDictionary.cs" />
+    <Compile Include="Controllers\MainWindowController.cs" />
+    <Compile Include="Controllers\MainWindowController.designer.cs">
+      <DependentUpon>MainWindowController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWindow.cs" />
+    <Compile Include="Windows\MainWindow.designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Attributes\MiddleFrequenciesAttribute.cs" />
+    <Compile Include="Enums\Scale.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Helpers\ScaleHelper.cs" />
+    <Compile Include="Attributes\FriendlyNameAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="MainMenu.xib" />
-    <InterfaceDefinition Include="MainWindow.xib" />
+    <InterfaceDefinition Include="Windows\MainWindow.xib" />
+    <InterfaceDefinition Include="Menus\MainMenu.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Windows\" />
+    <Folder Include="Menus\" />
+    <Folder Include="Attributes\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>
