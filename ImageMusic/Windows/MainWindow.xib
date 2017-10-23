@@ -23,13 +23,14 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="131" y="74" width="606" height="354"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+            <value key="minSize" type="size" width="606" height="354"/>
             <view key="contentView" id="3">
                 <rect key="frame" x="0.0" y="0.0" width="606" height="354"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="5B9-i0-wEa">
-                        <rect key="frame" x="122" y="123" width="363" height="214"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <rect key="frame" x="153" y="178" width="299" height="159"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                         <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="Sbi-KF-u5t"/>
                         <connections>
                             <action selector="ImagePicked:" target="-2" id="m6V-Bu-8hT"/>
@@ -46,7 +47,7 @@
                     </textField>
                     <button verticalHuggingPriority="750" misplaced="YES" id="RP2-Yo-6cv">
                         <rect key="frame" x="226" y="32" width="154" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Play" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jCS-ty-g3G">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -55,20 +56,16 @@
                             <action selector="StartClicked:" target="-2" id="gYE-Y1-eAx"/>
                         </connections>
                     </button>
-                    <progressIndicator wantsLayer="YES" misplaced="YES" maxValue="100" style="bar" id="4H1-Gz-JYE">
-                        <rect key="frame" x="125" y="79" width="357" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </progressIndicator>
                     <box misplaced="YES" boxType="custom" cornerRadius="4" title="Box" id="YIR-Ah-Ypf">
                         <rect key="frame" x="492" y="217" width="104" height="117"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                         <view key="contentView" id="JZ4-fR-kzT">
                             <rect key="frame" x="1" y="1" width="102" height="115"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
                     </box>
                     <popUpButton verticalHuggingPriority="750" misplaced="YES" id="gLx-JG-HmN">
-                        <rect key="frame" x="18" y="310" width="76" height="26"/>
+                        <rect key="frame" x="18" y="310" width="133" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" title="Scale" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="GRU-Sq-LFE" id="7Q9-fK-56w">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -85,8 +82,13 @@
                             </connections>
                         </popUpButtonCell>
                     </popUpButton>
+                    <progressIndicator wantsLayer="YES" misplaced="YES" maxValue="100" style="bar" id="4H1-Gz-JYE">
+                        <rect key="frame" x="156" y="154" width="293" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    </progressIndicator>
                 </subviews>
             </view>
+            <point key="canvasLocation" x="323" y="125"/>
         </window>
     </objects>
 </document>
