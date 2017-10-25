@@ -4,7 +4,7 @@ namespace ImageMusic
 {
     public class SourceNodeView : BaseNodeView
     {
-        public ColorComponent ColorComponent { get; set; }
+        public readonly ColorComponent ColorComponent;
 
         public SourceNodeView(Enum componentType) : base(componentType)
         {

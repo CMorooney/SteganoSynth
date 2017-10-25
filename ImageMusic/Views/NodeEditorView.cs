@@ -11,7 +11,7 @@ namespace ImageMusic
     public partial class NodeEditorView : NSView
     {
         List<BaseNodeView> Nodes;
-
+        List<NodeConnectionData> NodeConnectionData;
         BaseNodeView CurrentStartNode, CurrentEndNode;
         CAShapeLayer DrawingLayer;
         CGPoint CurrentStartPosition, CurrentEndPosition;
@@ -41,6 +41,8 @@ namespace ImageMusic
         // Shared initialization code
         void Initialize()
         {
+            NodeConnectionData = new List<NodeConnectionData>();
+
             WantsLayer = true;
 
             DrawingLayer = CreateLayer(NSColor.Black);
@@ -200,7 +202,7 @@ namespace ImageMusic
 
             var color = NSColor.Black;
 
-            if (sourceNode != null)
+            if (sourceNode != null && sourceNode.GetHasConnection())
             {
                 color = sourceNode.ColorComponent.GetColor();
             }
@@ -232,17 +234,48 @@ namespace ImageMusic
 
         void ValidConnectionMade ()
         {
-            SetNodeColors();
-
             CurrentStartNode.SetHasConnection(true);
             CurrentEndNode.SetHasConnection(true);
 
             var sourceNode = GetSourceNode();
+            var targetNode = GetTargetNode();
 
             var layer = CreateLayer(sourceNode.ColorComponent.GetColor());
             DrawPathOnLayer(layer);
 
+            var existingConnections = NodeConnectionData.Where(n =>
+                                        n.SourceNodeView.ColorComponent == sourceNode.ColorComponent ||
+                                        n.TargetNodeView.TargetModifier == targetNode.TargetModifier)
+                                        .ToList();
+
+            if (existingConnections.Count >= 0)
+            {
+                foreach (var existingConnection in existingConnections)
+                {
+                    if (existingConnection.SourceNodeView.ColorComponent != sourceNode.ColorComponent)
+                    {
+                        existingConnection.SourceNodeView.SetHasConnection(false);
+                    }
+                    if (existingConnection.TargetNodeView.TargetModifier != targetNode.TargetModifier)
+                    {
+                        existingConnection.TargetNodeView.SetHasConnection(false);
+                    }
+
+                    existingConnection.ConnectionLayer.RemoveFromSuperLayer();
+                    NodeConnectionData.Remove(existingConnection);
+                }
+            }
+
+            NodeConnectionData.Add (new NodeConnectionData
+            {
+                SourceNodeView = sourceNode,
+                TargetNodeView = targetNode,
+                ConnectionLayer = layer
+            });
+
             Layer.AddSublayer(layer);
+
+            SetNodeColors();
         }
 
         void NoConnectionMade()

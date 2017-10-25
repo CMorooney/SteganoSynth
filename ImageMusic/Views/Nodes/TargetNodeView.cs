@@ -4,7 +4,12 @@ namespace ImageMusic
 {
     public class TargetNodeView : BaseNodeView
     {
-        public TargetNodeView(Enum componentType) : base(componentType) {}
+        public readonly TargetModifier TargetModifier;
+
+        public TargetNodeView(Enum componentType) : base(componentType)
+        {
+            TargetModifier = (TargetModifier)componentType;
+        }
 
         public override bool CanConnectToNode(BaseNodeView other)
         {
