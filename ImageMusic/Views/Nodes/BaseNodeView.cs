@@ -4,7 +4,7 @@ using CoreGraphics;
 
 namespace ImageMusic
 {
-    public abstract class BaseNodeView : NSView, INodeView
+    public abstract class BaseNodeView : NSView
     {
         protected NSTextField NodeNameLabel;
 
@@ -55,16 +55,13 @@ namespace ImageMusic
 
         public bool IsUserInteractingWithPort() => NodePort.IsHovering;
 
+        public CGPoint GetNodePortMidPoint() =>
+            new CGPoint(NodePort.Frame.GetMidX() + Frame.X, NodePort.Frame.GetMidY() + Frame.Y);
+
         protected abstract nfloat GetXForLabel();
 
         protected abstract nfloat GetXForNodePort();
 
-        #region INodeView implementation
-
-        public abstract void ClearConnection();
-
-        public abstract void MakeConnection(INodeView nodeView);
-
-        #endregion
+        public abstract bool CanConnectToNode(BaseNodeView other);
     }
 }

@@ -9,14 +9,11 @@ namespace ImageMusic
             NodeNameLabel.TextColor = ((ColorComponent)componentType).GetColor();
         }
 
-        public override void ClearConnection()
+        public override bool CanConnectToNode(BaseNodeView other)
         {
-            throw new NotImplementedException();
-        }
-
-        public override void MakeConnection(INodeView nodeView)
-        {
-            throw new NotImplementedException();
+            return
+                other != this &&
+                other is TargetNodeView;
         }
 
         protected override nfloat GetXForLabel() => 0;

@@ -111,12 +111,11 @@ namespace ImageMusic
         {
             base.MouseDown(theEvent);
 
-            CurrentStartPosition = ConvertPointFromView(theEvent.LocationInWindow, null);
-
             CurrentStartNode = GetInteractingNodePort();
 
             if (CurrentStartNode != null)
             {
+                CurrentStartPosition = CurrentStartNode.GetNodePortMidPoint();
                 CurrentStartNode.SetHasConnection(true);
             }
         }
@@ -130,10 +129,8 @@ namespace ImageMusic
                 return;
             }
 
-            var path = new CGPath();
-            path.MoveToPoint(CurrentStartPosition);
-            path.AddLineToPoint(ConvertPointFromView(theEvent.LocationInWindow, null));
-            DrawingLayer.Path = path;
+            CurrentEndPosition = ConvertPointFromView(theEvent.LocationInWindow, null);
+            DrawPathOnLayer(DrawingLayer);
         }
 
 
@@ -141,11 +138,11 @@ namespace ImageMusic
         {
             base.MouseUp(theEvent);
 
-            CurrentEndPosition = ConvertPointFromView(theEvent.LocationInWindow, null);
             CurrentEndNode = GetInteractingNodePort();
 
-            if (CurrentEndNode != null)
+            if (CurrentEndNode != null && IsPendingConnectionValid())
             {
+                CurrentEndPosition = CurrentEndNode.GetNodePortMidPoint();
                 ValidConnectionMade();
             }
             else
@@ -160,26 +157,48 @@ namespace ImageMusic
 
         #region Connection logic
 
+        void DrawPathOnLayer(CAShapeLayer layer)
+        {
+            var offset = Math.Abs(CurrentStartPosition.X - CurrentEndPosition.X) / 5;
+
+            var ctrlPointA = new CGPoint(CurrentEndPosition.X - offset, CurrentStartPosition.Y);
+            var ctrlPointB = new CGPoint(CurrentStartPosition.X + offset, CurrentEndPosition.Y);
+
+            var path = new CGPath();
+            path.MoveToPoint(CurrentStartPosition);
+            path.AddCurveToPoint(
+                ctrlPointA.X, ctrlPointA.Y,
+                ctrlPointB.X, ctrlPointB.Y,
+                CurrentEndPosition.X, CurrentEndPosition.Y);
+            
+            layer.Path = path;
+        }
+
         void ValidConnectionMade ()
         {
             CurrentStartNode.SetHasConnection(true);
             CurrentEndNode.SetHasConnection(true);
 
-            var path = new CGPath();
-            path.MoveToPoint(CurrentStartPosition);
-            path.AddLineToPoint(CurrentEndPosition);
-
             var layer = CreateLayer();
-            layer.Path = path;
+            DrawPathOnLayer(layer);
+
             Layer.AddSublayer(layer);
         }
 
         void NoConnectionMade()
         {
-            CurrentStartNode.SetHasConnection(false);
+            CurrentStartNode?.SetHasConnection(false);
+            CurrentEndNode?.SetHasConnection(false);
         }
 
         #endregion
+
+        bool IsPendingConnectionValid()
+        {
+            return
+                CurrentStartNode.CanConnectToNode(CurrentEndNode) &&
+                CurrentEndNode.CanConnectToNode(CurrentStartNode);
+        }
 
         void ResetDragStates()
         {
@@ -191,7 +210,7 @@ namespace ImageMusic
         CAShapeLayer CreateLayer () => new CAShapeLayer
         {
             StrokeColor = NSColor.Black.CGColor,
-            FillColor = NSColor.Black.CGColor,
+            FillColor = NSColor.Clear.CGColor,
             LineWidth = 5
         };
 

@@ -99,7 +99,6 @@
     </Compile>
     <Compile Include="Enums\ColorComponent.cs" />
     <Compile Include="Enums\TargetModifier.cs" />
-    <Compile Include="Interfaces\INodeView.cs" />
     <Compile Include="Views\Nodes\BaseNodeView.cs" />
     <Compile Include="Views\Nodes\SourceNodeView.cs" />
     <Compile Include="Views\Nodes\TargetNodeView.cs" />
@@ -121,7 +120,6 @@
     <Folder Include="Extensions\" />
     <Folder Include="Helpers\" />
     <Folder Include="Views\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Views\Nodes\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />

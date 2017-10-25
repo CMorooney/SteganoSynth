@@ -6,14 +6,11 @@ namespace ImageMusic
     {
         public TargetNodeView(Enum componentType) : base(componentType) {}
 
-        public override void ClearConnection()
+        public override bool CanConnectToNode(BaseNodeView other)
         {
-            throw new NotImplementedException();
-        }
-
-        public override void MakeConnection(INodeView nodeView)
-        {
-            throw new NotImplementedException();
+            return
+                other != this &&
+                other is SourceNodeView;
         }
 
         protected override nfloat GetXForLabel() => Frame.Width - LabelWidth;
