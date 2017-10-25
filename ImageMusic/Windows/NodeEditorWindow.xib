@@ -13,16 +13,22 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="zRM-3k-4Rb" customClass="NSPanel">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES" HUD="YES"/>
+        <window title="Node Editor" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="" animationBehavior="default" id="zRM-3k-4Rb" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="90" y="125" width="480" height="270"/>
+            <rect key="contentRect" x="90" y="125" width="424" height="243"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <view key="contentView" id="hzy-tT-KeD">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+            <view key="contentView" canDrawConcurrently="YES" misplaced="YES" id="hzy-tT-KeD">
+                <rect key="frame" x="0.0" y="0.0" width="424" height="243"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <customView misplaced="YES" id="2xs-Wu-nbe" customClass="NodeEditorView">
+                        <rect key="frame" x="0.0" y="0.0" width="424" height="243"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
+                </subviews>
             </view>
-            <point key="canvasLocation" x="386" y="63"/>
+            <point key="canvasLocation" x="139" y="47.5"/>
         </window>
     </objects>
 </document>

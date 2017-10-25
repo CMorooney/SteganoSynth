@@ -93,11 +93,24 @@
     <Compile Include="Controllers\NodeEditorWindowController.designer.cs">
       <DependentUpon>NodeEditorWindowController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\NodeEditorView.cs" />
+    <Compile Include="Views\NodeEditorView.designer.cs">
+      <DependentUpon>NodeEditorView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Enums\ColorComponent.cs" />
+    <Compile Include="Enums\TargetModifier.cs" />
+    <Compile Include="Interfaces\INodeView.cs" />
+    <Compile Include="Views\Nodes\BaseNodeView.cs" />
+    <Compile Include="Views\Nodes\SourceNodeView.cs" />
+    <Compile Include="Views\Nodes\TargetNodeView.cs" />
+    <Compile Include="Views\Nodes\NodePort.cs" />
+    <Compile Include="Attributes\ColorAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Windows\MainWindow.xib" />
     <InterfaceDefinition Include="Menus\MainMenu.xib" />
     <InterfaceDefinition Include="Windows\NodeEditorWindow.xib" />
+    <InterfaceDefinition Include="Views\NodeEditorView.xib" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -107,6 +120,9 @@
     <Folder Include="Enums\" />
     <Folder Include="Extensions\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Views\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Views\Nodes\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>

@@ -6,6 +6,8 @@ namespace ImageMusic
 {
     public partial class NodeEditorWindowController : NSWindowController
     {
+        #region Constructors
+
         public NodeEditorWindowController(IntPtr handle) : base(handle)
         {
         }
@@ -18,5 +20,7 @@ namespace ImageMusic
         public NodeEditorWindowController() : base("NodeEditorWindow")
         {
         }
+
+        #endregion
     }
 }

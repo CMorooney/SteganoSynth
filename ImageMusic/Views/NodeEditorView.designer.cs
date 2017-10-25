@@ -9,8 +9,8 @@ using System.CodeDom.Compiler;
 
 namespace ImageMusic
 {
-	[Register ("NodeEditorWindowController")]
-	partial class NodeEditorWindowController
+	[Register ("NodeEditorView")]
+	partial class NodeEditorView
 	{
 		
 		void ReleaseDesignerOutlets ()

@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using AppKit;
 
 namespace ImageMusic
 {
@@ -12,10 +14,18 @@ namespace ImageMusic
                     .First() as MiddleFrequenciesAttribute).Frequencies;
         }
 
-        public static string GetFriendlyName (this Scale scale)
+        public static NSColor GetColor (this ColorComponent colorComponent)
         {
-            return (typeof(Scale)
-                    .GetField(scale.ToString())
+            return (typeof(ColorComponent)
+                    .GetField(colorComponent.ToString())
+                    .GetCustomAttributes(typeof(ColorAttribute), false)
+                    .First() as ColorAttribute).Color;
+        }
+
+        public static string GetFriendlyName (this Enum @enum)
+        {
+            return (@enum.GetType()
+                    .GetField(@enum.ToString())
                     .GetCustomAttributes(typeof(FriendlyNameAttribute), false)
                     .First() as FriendlyNameAttribute).FriendlyName;
         }
