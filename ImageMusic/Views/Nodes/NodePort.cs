@@ -1,4 +1,5 @@
-﻿using CoreGraphics;
+﻿using System;
+using CoreGraphics;
 using AppKit;
 
 namespace ImageMusic
@@ -7,14 +8,31 @@ namespace ImageMusic
     {
         public bool IsHovering;
         public bool HasConnection;
+        public event EventHandler MouseDidEnter;
+        public event EventHandler MouseDidExit;
+
+        NSColor Color;
 
         public NodePort(CGRect frame) : base(frame)
         {
             WantsLayer = true;
 
+            SetColor (NSColor.Black);
+
             Layer.CornerRadius = frame.Height / 2;
-            Layer.BorderColor = NSColor.Black.CGColor;
             Layer.BorderWidth = 2;
+        }
+
+        public void SetColor (NSColor color)
+        {
+            Color = color;
+            ApplyColor();
+        }
+
+        void ApplyColor()
+        {
+            Layer.BorderColor = Color.CGColor;
+            SetNeedsDisplayInRect(Bounds);
         }
 
         public override bool IsFlipped => true;
@@ -24,7 +42,7 @@ namespace ImageMusic
             if (IsHovering || HasConnection)
             {
                 var gContext = NSGraphicsContext.CurrentContext.CGContext;
-                gContext.SetFillColor(NSColor.Black.CGColor);
+                gContext.SetFillColor(Color.CGColor);
                 gContext.FillRect(dirtyRect);
             }
 
@@ -49,6 +67,8 @@ namespace ImageMusic
         {
             base.MouseEntered(theEvent);
 
+            MouseDidEnter?.Invoke(this, null);
+
             IsHovering = true;
             SetNeedsDisplayInRect(Frame);
         }
@@ -56,6 +76,8 @@ namespace ImageMusic
         public override void MouseExited(NSEvent theEvent)
         {
             base.MouseExited(theEvent);
+
+            MouseDidExit?.Invoke(this, null);
 
             IsHovering = false;
             SetNeedsDisplayInRect(Frame);

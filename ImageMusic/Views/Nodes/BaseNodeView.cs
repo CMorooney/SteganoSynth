@@ -6,6 +6,9 @@ namespace ImageMusic
 {
     public abstract class BaseNodeView : NSView
     {
+        public event EventHandler MouseEnteredPort;
+        public event EventHandler MouseExitedPort;
+
         protected NSTextField NodeNameLabel;
 
         protected const int NodePortSize = 12;
@@ -44,13 +47,36 @@ namespace ImageMusic
                 NodePortSize, NodePortSize)
             );
 
+            NodePort.MouseDidEnter += MouseEnteredNodePort;
+            NodePort.MouseDidExit += MouseExitedNodePort;
+
             AddSubview(NodePort);
+        }
+
+        void MouseExitedNodePort(object sender, EventArgs e)
+        {
+            MouseExitedPort?.Invoke(this, e);
+        }
+
+        void MouseEnteredNodePort(object sender, EventArgs e)
+        {
+            MouseEnteredPort?.Invoke(this, e);
+        }
+
+        public void SetNodePortColor(NSColor color)
+        {
+            NodePort.SetColor(color);
         }
 
         public void SetHasConnection(bool hasConnection)
         {
             NodePort.HasConnection = hasConnection;
             NodePort.SetNeedsDisplayInRect(NodePort.Bounds);
+        }
+
+        public bool GetHasConnection()
+        {
+            return NodePort.HasConnection;
         }
 
         public bool IsUserInteractingWithPort() => NodePort.IsHovering;

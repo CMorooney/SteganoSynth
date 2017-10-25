@@ -4,8 +4,11 @@ namespace ImageMusic
 {
     public class SourceNodeView : BaseNodeView
     {
+        public ColorComponent ColorComponent { get; set; }
+
         public SourceNodeView(Enum componentType) : base(componentType)
         {
+            ColorComponent = (ColorComponent)componentType;
             NodeNameLabel.TextColor = ((ColorComponent)componentType).GetColor();
         }
 

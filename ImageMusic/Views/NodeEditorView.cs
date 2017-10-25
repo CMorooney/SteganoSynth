@@ -43,7 +43,7 @@ namespace ImageMusic
         {
             WantsLayer = true;
 
-            DrawingLayer = CreateLayer();
+            DrawingLayer = CreateLayer(NSColor.Black);
             Layer.AddSublayer(DrawingLayer);
         }
 
@@ -79,6 +79,8 @@ namespace ImageMusic
                 frame.X += windowPadding;
                 sourceNode.Frame = frame;
 
+                sourceNode.MouseExitedPort += MouseExitedPort;
+
                 Nodes.Add(sourceNode);
                 AddSubview(sourceNode);
 
@@ -95,6 +97,8 @@ namespace ImageMusic
                 frame.Y = y;
                 frame.X = Frame.Width - frame.Width - windowPadding;
                 targetNode.Frame = frame;
+
+                targetNode.MouseExitedPort += MouseExitedPort;
 
                 Nodes.Add(targetNode);
                 AddSubview(targetNode);
@@ -115,6 +119,9 @@ namespace ImageMusic
 
             if (CurrentStartNode != null)
             {
+                SetNodeColors();
+                SetDrawingLayerColor();
+
                 CurrentStartPosition = CurrentStartNode.GetNodePortMidPoint();
                 CurrentStartNode.SetHasConnection(true);
             }
@@ -124,12 +131,18 @@ namespace ImageMusic
         {
             base.MouseDragged(theEvent);
 
-            if (CurrentStartNode == null)
+            if (!IsDrawing)
             {
                 return;
             }
 
+            CurrentEndNode = GetInteractingNodePort();
+
             CurrentEndPosition = ConvertPointFromView(theEvent.LocationInWindow, null);
+
+            SetNodeColors();
+            SetDrawingLayerColor();
+
             DrawPathOnLayer(DrawingLayer);
         }
 
@@ -140,7 +153,7 @@ namespace ImageMusic
 
             CurrentEndNode = GetInteractingNodePort();
 
-            if (CurrentEndNode != null && IsPendingConnectionValid())
+            if (IsDrawing && IsPendingConnectionValid())
             {
                 CurrentEndPosition = CurrentEndNode.GetNodePortMidPoint();
                 ValidConnectionMade();
@@ -150,12 +163,51 @@ namespace ImageMusic
                 NoConnectionMade();
             }
 
+            SetNodeColors();
+            SetDrawingLayerColor();
             ResetDragStates();
         }
 
         #endregion
 
-        #region Connection logic
+        #region Drawing
+
+        CAShapeLayer CreateLayer(NSColor color) => new CAShapeLayer
+        {
+            StrokeColor = color.CGColor,
+            FillColor = NSColor.Clear.CGColor,
+            LineWidth = 2
+        };
+
+        void SetDrawingLayerColor()
+        {
+            var sourceNode = GetSourceNode();
+
+            if (sourceNode != null)
+            {
+                var color = sourceNode.ColorComponent.GetColor();
+                DrawingLayer.StrokeColor = color.CGColor;
+            }
+            else
+            {
+                DrawingLayer.StrokeColor = NSColor.Black.CGColor;
+            }
+        }
+
+        void SetNodeColors()
+        {
+            var sourceNode = GetSourceNode();
+
+            var color = NSColor.Black;
+
+            if (sourceNode != null)
+            {
+                color = sourceNode.ColorComponent.GetColor();
+            }
+
+            CurrentStartNode?.SetNodePortColor(color);
+            CurrentEndNode?.SetNodePortColor(color);
+        }
 
         void DrawPathOnLayer(CAShapeLayer layer)
         {
@@ -174,12 +226,20 @@ namespace ImageMusic
             layer.Path = path;
         }
 
+        #endregion
+
+        #region Connection logic
+
         void ValidConnectionMade ()
         {
+            SetNodeColors();
+
             CurrentStartNode.SetHasConnection(true);
             CurrentEndNode.SetHasConnection(true);
 
-            var layer = CreateLayer();
+            var sourceNode = GetSourceNode();
+
+            var layer = CreateLayer(sourceNode.ColorComponent.GetColor());
             DrawPathOnLayer(layer);
 
             Layer.AddSublayer(layer);
@@ -192,6 +252,21 @@ namespace ImageMusic
         }
 
         #endregion
+
+        void MouseExitedPort(object sender, EventArgs e)
+        {
+            if(!IsDrawing)
+            {
+                return;
+            }
+            
+            var nodeView = sender as BaseNodeView;
+
+            if (!nodeView.GetHasConnection())
+            {
+                nodeView.SetNodePortColor(NSColor.Black);
+            }
+        }
 
         bool IsPendingConnectionValid()
         {
@@ -207,13 +282,20 @@ namespace ImageMusic
             CurrentStartNode = CurrentEndNode = null;
         }
 
-        CAShapeLayer CreateLayer () => new CAShapeLayer
-        {
-            StrokeColor = NSColor.Black.CGColor,
-            FillColor = NSColor.Clear.CGColor,
-            LineWidth = 5
-        };
+        bool IsDrawing => CurrentStartNode != null;
 
         BaseNodeView GetInteractingNodePort() => Nodes.FirstOrDefault(n => n.IsUserInteractingWithPort());
+
+        SourceNodeView GetSourceNode()
+        {
+            return CurrentStartNode is SourceNodeView ?
+            CurrentStartNode as SourceNodeView : CurrentEndNode as SourceNodeView;
+        }
+
+        TargetNodeView GetTargetNode()
+        {
+            return CurrentStartNode is TargetNodeView ?
+                CurrentStartNode as TargetNodeView : CurrentEndNode as TargetNodeView;
+        }
     }
 }
