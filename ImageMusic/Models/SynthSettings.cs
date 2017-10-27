@@ -1,18 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace ImageMusic
 {
+    public delegate void SynthSourceForTargetChanged(ColorComponent newSource, TargetModifier target);
+
     public class SynthSettings
     {
-        #region Properties
+        public event SynthSourceForTargetChanged SynthSourceForTargetChanged;
 
-        public Dictionary<ColorComponent, TargetModifier> CurrentSettings { get; set; }
-
-        #endregion
+        Dictionary<ColorComponent, TargetModifier> CurrentSettings { get; set; }
 
         #region Singleton implementation
 
-        public SynthSettings Instance
+        static SynthSettings _Instance;
+
+        public static SynthSettings Instance
         {
             get
             {
@@ -34,8 +38,6 @@ namespace ImageMusic
             SetupDefaults();
         }
 
-        SynthSettings _Instance;
-
         void SetupDefaults()
         {
             CurrentSettings = new Dictionary<ColorComponent, TargetModifier>
@@ -48,5 +50,22 @@ namespace ImageMusic
         }
 
         #endregion
+
+        public void SetSourceForTarget(ColorComponent source, TargetModifier target)
+        {
+            CurrentSettings[source] = target;
+            SynthSourceForTargetChanged?.Invoke (source, target);
+        }
+
+        public ColorComponent GetSourceForTarget (TargetModifier target)
+        {
+            return CurrentSettings.First(s => s.Value == target).Key;
+        }
+
+        public bool IsComplete()
+        {
+            var sourceCount = Enum.GetNames(typeof(ColorComponent)).Length;
+            return CurrentSettings.Count == sourceCount;
+        }
     }
 }

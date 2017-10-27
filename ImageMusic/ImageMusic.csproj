@@ -106,6 +106,7 @@
     <Compile Include="Attributes\ColorAttribute.cs" />
     <Compile Include="Models\NodeConnectionData.cs" />
     <Compile Include="Models\SynthSettings.cs" />
+    <Compile Include="Extensions\NSColorExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Windows\MainWindow.xib" />

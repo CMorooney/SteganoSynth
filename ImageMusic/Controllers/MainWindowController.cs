@@ -65,24 +65,27 @@ namespace ImageMusic
                     {
                         var color = imageRepresentation.ColorAt(x, y);
 
-                        var carrierFrequency = (float)color.RedComponent * 1000;
-                        var sampleLength = Math.Max(1024, (uint)(color.BrightnessComponent * 8000));
-                        var octave = (float)color.GreenComponent * 10000;
+                        var carrierFrequency = color.GetCarrierFrequency();
+                        var modulatorFrequency = color.GetModulatorFrequency();
+                        var sampleLength = Math.Max(1024, (uint)color.GetNoteLength());
+                        var octave = color.GetOctave();
 
                         var closestOctave = FrequenciesByOctave.Keys.Aggregate((a, b) => Math.Abs(a - octave) < Math.Abs(b - octave) ? a : b);
 
                         var closestCarrier = ScaleHelper.GetNotesForScale(ChosenScale.Value, closestOctave).Aggregate(
                             (a, b) => Math.Abs(a - carrierFrequency) < Math.Abs(b - carrierFrequency) ? a : b);
 
-                        PlayTone(closestCarrier, color, sampleLength);
+                        var closestModulator = ScaleHelper.GetNotesForScale(ChosenScale.Value, closestOctave).Aggregate(
+                            (a, b) => Math.Abs(a - modulatorFrequency) < Math.Abs(b - modulatorFrequency) ? a : b);
+
+                        PlayTone(closestCarrier, closestModulator, sampleLength, closestOctave, color);
                     }
                 }
             }
         }
 
-        unsafe void PlayTone(float carrierFrequency, NSColor color, uint sampleLength)
+        unsafe void PlayTone(float carrierFrequency, float modulatorFrequency, uint sampleLength, int octave, NSColor color)
         {
-            const int modulatorFrequency = 697;
             const float modulatorAmplitude = .8f;
 
             var unitVelocity = 2 * Math.PI / AudioFormat.SampleRate;

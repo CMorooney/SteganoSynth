@@ -279,6 +279,9 @@ namespace ImageMusic
 
             Layer.AddSublayer(layer);
 
+            SynthSettings.Instance.SetSourceForTarget
+                         (connectingSourceNode.ColorComponent, connectingTargetNode.TargetModifier);
+
             SetNodeColors();
         }
 
