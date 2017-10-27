@@ -237,28 +237,32 @@ namespace ImageMusic
             CurrentStartNode.SetHasConnection(true);
             CurrentEndNode.SetHasConnection(true);
 
-            var sourceNode = GetSourceNode();
-            var targetNode = GetTargetNode();
+            var connectingSourceNode = GetSourceNode();
+            var connectingTargetNode = GetTargetNode();
 
-            var layer = CreateLayer(sourceNode.ColorComponent.GetColor());
+            var layer = CreateLayer(connectingSourceNode.ColorComponent.GetColor());
             DrawPathOnLayer(layer);
 
             var existingConnections = NodeConnectionData.Where(n =>
-                                        n.SourceNodeView.ColorComponent == sourceNode.ColorComponent ||
-                                        n.TargetNodeView.TargetModifier == targetNode.TargetModifier)
+                                        n.SourceNodeView.ColorComponent == connectingSourceNode.ColorComponent ||
+                                        n.TargetNodeView.TargetModifier == connectingTargetNode.TargetModifier)
                                         .ToList();
 
             if (existingConnections.Count >= 0)
             {
                 foreach (var existingConnection in existingConnections)
                 {
-                    if (existingConnection.SourceNodeView.ColorComponent != sourceNode.ColorComponent)
+                    var sourceNode = existingConnection.SourceNodeView;
+                    var targetNode = existingConnection.TargetNodeView;
+
+                    if (sourceNode.ColorComponent != connectingSourceNode.ColorComponent)
                     {
-                        existingConnection.SourceNodeView.SetHasConnection(false);
+                        sourceNode.SetHasConnection(false);
                     }
-                    if (existingConnection.TargetNodeView.TargetModifier != targetNode.TargetModifier)
+                    if (targetNode.TargetModifier != connectingTargetNode.TargetModifier)
                     {
-                        existingConnection.TargetNodeView.SetHasConnection(false);
+                        targetNode.SetNodePortColor(NSColor.Black);
+                        targetNode.SetHasConnection(false);
                     }
 
                     existingConnection.ConnectionLayer.RemoveFromSuperLayer();
@@ -268,8 +272,8 @@ namespace ImageMusic
 
             NodeConnectionData.Add (new NodeConnectionData
             {
-                SourceNodeView = sourceNode,
-                TargetNodeView = targetNode,
+                SourceNodeView = connectingSourceNode,
+                TargetNodeView = connectingTargetNode,
                 ConnectionLayer = layer
             });
 
