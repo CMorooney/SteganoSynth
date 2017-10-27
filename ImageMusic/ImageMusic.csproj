@@ -105,6 +105,7 @@
     <Compile Include="Views\Nodes\NodePort.cs" />
     <Compile Include="Attributes\ColorAttribute.cs" />
     <Compile Include="Models\NodeConnectionData.cs" />
+    <Compile Include="Models\SynthSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Windows\MainWindow.xib" />
