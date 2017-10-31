@@ -58,6 +58,7 @@ namespace ImageMusic
             base.AwakeFromNib();
 
             CreateAndDrawNodes();
+            SetDefaultConnections();
         }
 
         #endregion
@@ -292,6 +293,27 @@ namespace ImageMusic
         }
 
         #endregion
+
+        void SetDefaultConnections()
+        {
+            var settings = SynthSettings.Instance;
+
+            var sourceNodes = Nodes.Where(n => n is SourceNodeView);
+            var targetNodes = Nodes.Where(n => n is TargetNodeView);
+
+            foreach (var targetModifier in Enum.GetValues(typeof(TargetModifier)).Cast<TargetModifier>())
+            {
+                var source = settings.GetSourceForTarget(targetModifier);
+
+                CurrentStartNode = sourceNodes.First(n => (n as SourceNodeView).ColorComponent == source);
+                CurrentEndNode = targetNodes.First(n => (n as TargetNodeView).TargetModifier == targetModifier);
+
+                CurrentStartPosition = CurrentStartNode.GetNodePortMidPoint();
+                CurrentEndPosition = CurrentEndNode.GetNodePortMidPoint();
+
+                ValidConnectionMade();
+            }
+        }
 
         void MouseExitedPort(object sender, EventArgs e)
         {
