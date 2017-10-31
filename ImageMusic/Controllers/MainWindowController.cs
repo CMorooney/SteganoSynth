@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using CoreFoundation;
 using System.Threading;
 using System.Linq;
+using CoreGraphics;
 
 namespace ImageMusic
 {
@@ -50,6 +51,11 @@ namespace ImageMusic
 
         void GenerateMusic()
         {
+            if (ChosenImage.Size.Width > 150 || ChosenImage.Size.Height > 150)
+            {
+                ChosenImage = ImageHelpers.ResizeImage(ChosenImage, new CGSize(150, 150));
+            }
+
             using (var imageRepresentation = new NSBitmapImageRep(ChosenImage.AsTiff()))
             {
                 var imageSize = ChosenImage.Size;
