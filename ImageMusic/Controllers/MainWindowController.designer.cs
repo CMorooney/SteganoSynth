@@ -19,6 +19,9 @@ namespace ImageMusic
 		AppKit.NSTextField ErrorLabel { get; set; }
 
 		[Outlet]
+		AppKit.NSImageCell ImageCell { get; set; }
+
+		[Outlet]
 		AppKit.NSButton PausePlayButton { get; set; }
 
 		[Outlet]
@@ -33,6 +36,9 @@ namespace ImageMusic
 		[Action ("ImagePicked:")]
 		partial void ImagePicked (AppKit.NSImageView sender);
 
+		[Action ("RandomImageClicked:")]
+		partial void RandomImageClicked (AppKit.NSButton sender);
+
 		[Action ("ScaleChosen:")]
 		partial void ScaleChosen (AppKit.NSPopUpButtonCell sender);
 
@@ -41,6 +47,11 @@ namespace ImageMusic
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (ImageCell != null) {
+				ImageCell.Dispose ();
+				ImageCell = null;
+			}
+
 			if (ColorIndicator != null) {
 				ColorIndicator.Dispose ();
 				ColorIndicator = null;

@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="ColorIndicator" destination="YIR-Ah-Ypf" id="Ztf-iZ-Hr7"/>
                 <outlet property="ErrorLabel" destination="LWO-gL-zhx" id="ped-32-zAA"/>
+                <outlet property="ImageCell" destination="Sbi-KF-u5t" id="uqv-WG-yww"/>
                 <outlet property="PausePlayButton" destination="RP2-Yo-6cv" id="bMH-c1-F5f"/>
                 <outlet property="ProgressIndicator" destination="4H1-Gz-JYE" id="bdV-FV-guY"/>
                 <outlet property="ScaleChooser" destination="gLx-JG-HmN" id="KAF-Y6-5tU"/>
@@ -95,6 +96,17 @@
                         </buttonCell>
                         <connections>
                             <action selector="EditNodesClicked:" target="-2" id="H3n-MU-7SU"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" misplaced="YES" id="nLL-pH-tSz">
+                        <rect key="frame" x="225" y="126" width="154" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Get Random Image" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="w57-sm-oDp">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="RandomImageClicked:" target="-2" id="nkc-hI-AWs"/>
                         </connections>
                     </button>
                 </subviews>

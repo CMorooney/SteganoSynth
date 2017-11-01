@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Foundation;
 using AppKit;
 using AVFoundation;
@@ -182,6 +183,22 @@ namespace ImageMusic
 
         #region Event handlers
 
+        partial void RandomImageClicked(NSButton sender)
+        {
+            var service = new RandomImageService();
+
+            Task.Run(async () =>
+            {
+                var image = await service.GetRandomImage();
+
+                if (image != null)
+                {
+                    BeginInvokeOnMainThread(() => ImageCell.Image = image);
+                    ChosenImage = image;
+                }
+            }); 
+        }
+
         partial void ImagePicked(NSImageView sender)
         {
             ChosenImage = sender.Image;
@@ -232,6 +249,11 @@ namespace ImageMusic
         void ShowValidationError()
         {
             ErrorLabel.StringValue = "Please provide and image and choose a scale";
+        }
+
+        void ShowAPIError()
+        {
+            ErrorLabel.StringValue = "Error getting a random image";
         }
 
         void ClearErrorMessage()
