@@ -71,7 +71,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="FrequencyDictionary.cs" />
     <Compile Include="Controllers\MainWindowController.cs" />
     <Compile Include="Controllers\MainWindowController.designer.cs">
       <DependentUpon>MainWindowController.cs</DependentUpon>
@@ -108,6 +107,9 @@
     <Compile Include="Models\SynthSettings.cs" />
     <Compile Include="Extensions\NSColorExtensions.cs" />
     <Compile Include="Helpers\ImageHelpers.cs" />
+    <Compile Include="Models\FrequencyDictionary.cs" />
+    <Compile Include="Extensions\PrimitiveExtensions.cs" />
+    <Compile Include="Helpers\SynthHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Windows\MainWindow.xib" />

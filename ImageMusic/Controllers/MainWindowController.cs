@@ -8,6 +8,7 @@ using CoreFoundation;
 using System.Threading;
 using System.Linq;
 using CoreGraphics;
+using static ImageMusic.SynthHelper;
 
 namespace ImageMusic
 {
@@ -71,10 +72,11 @@ namespace ImageMusic
                     {
                         var color = imageRepresentation.ColorAt(x, y);
 
-                        var carrierFrequency = color.GetCarrierFrequency();
-                        var modulatorFrequency = color.GetModulatorFrequency();
-                        var sampleLength = Math.Max(1024, (uint)color.GetNoteLength());
-                        var octave = color.GetOctave();
+                        var carrierFrequency = GetCarrierFrequencyForColor(color);
+                        var modulatorFrequency = GetModulatorFrequencyForColor(color);
+                        var sampleLength = GetNoteLengthForColor(color);
+                        var octave = GetOctaveForColor(color);
+                        var pan = GetPanForColor(color);
 
                         var closestOctave = FrequenciesByOctave.Keys.Aggregate((a, b) => Math.Abs(a - octave) < Math.Abs(b - octave) ? a : b);
 
@@ -84,13 +86,13 @@ namespace ImageMusic
                         var closestModulator = ScaleHelper.GetNotesForScale(ChosenScale.Value, closestOctave).Aggregate(
                             (a, b) => Math.Abs(a - modulatorFrequency) < Math.Abs(b - modulatorFrequency) ? a : b);
 
-                        PlayTone(closestCarrier, closestModulator, sampleLength, closestOctave, color);
+                        PlayTone(closestCarrier, closestModulator, sampleLength, pan, color);
                     }
                 }
             }
         }
 
-        unsafe void PlayTone(float carrierFrequency, float modulatorFrequency, uint sampleLength, int octave, NSColor color)
+        unsafe void PlayTone(float carrierFrequency, float modulatorFrequency, uint sampleLength, float pan, NSColor color)
         {
             const float modulatorAmplitude = .8f;
 
@@ -103,8 +105,6 @@ namespace ImageMusic
                 var sampleTime = 0f;
 
                 Semaphore.Wait();
-
-                Console.WriteLine($"PLAYING: {carrierFrequency} FOR: {sampleLength}");
 
                 DispatchQueue.MainQueue.DispatchAsync (() =>
                 {
@@ -140,6 +140,11 @@ namespace ImageMusic
 
                 buffer.FrameLength = sampleLength;
 
+                Console.WriteLine("PAN: " + pan);
+                PlayerNode.Pan = pan;
+
+                PlayerNode.Play();
+
                 PlayerNode.ScheduleBuffer(buffer, () =>
                 {
                     Semaphore.Release();
@@ -148,7 +153,7 @@ namespace ImageMusic
                 BufferIndex = (BufferIndex + 1) % AudioBuffers.Count;
             });
 
-            PlayerNode.Play();
+
         }
 
         #region Lifecycle
@@ -170,7 +175,6 @@ namespace ImageMusic
 
             AudioEngine.AttachNode(PlayerNode);
             AudioEngine.Connect(PlayerNode, AudioEngine.MainMixerNode, AudioFormat);
-
             AudioEngine.StartAndReturnError(out var error);
         }
 

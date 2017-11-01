@@ -4,11 +4,8 @@ using System.Collections.Generic;
 
 namespace ImageMusic
 {
-    public delegate void SynthSourceForTargetChanged(ColorComponent newSource, TargetModifier target);
-
     public class SynthSettings
     {
-        public event SynthSourceForTargetChanged SynthSourceForTargetChanged;
 
         Dictionary<ColorComponent, TargetModifier> CurrentSettings { get; set; }
 
@@ -45,7 +42,8 @@ namespace ImageMusic
                 { ColorComponent.Red, TargetModifier.CarrierFrequency },
                 { ColorComponent.Green, TargetModifier.Octave },
                 { ColorComponent.Blue, TargetModifier.ModifierFrequency },
-                { ColorComponent.Brightness, TargetModifier.NoteLength }
+                { ColorComponent.Brightness, TargetModifier.NoteLength },
+                { ColorComponent.Hue, TargetModifier.Pan }
             };
         }
 
@@ -54,7 +52,6 @@ namespace ImageMusic
         public void SetSourceForTarget(ColorComponent source, TargetModifier target)
         {
             CurrentSettings[source] = target;
-            SynthSourceForTargetChanged?.Invoke (source, target);
         }
 
         public ColorComponent GetSourceForTarget (TargetModifier target)

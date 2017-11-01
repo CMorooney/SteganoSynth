@@ -16,6 +16,10 @@
 
         [FriendlyName("Brightness Component")]
         [Color (0, 0, 0)]
-        Brightness
+        Brightness,
+
+        [FriendlyName("Hue Component")]
+        [Color (0, 0, 0)]
+        Hue
     }
 }

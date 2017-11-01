@@ -12,6 +12,9 @@
         Octave,
 
         [FriendlyName("Note Length")]
-        NoteLength
+        NoteLength,
+
+        [FriendlyName("Pan")]
+        Pan
     }
 }

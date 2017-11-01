@@ -3,9 +3,9 @@ using AppKit;
 
 namespace ImageMusic
 {
-    public static class NSColorExtensions
+    public static class SynthHelper
     {
-        public static nfloat GetCarrierFrequency (this NSColor color)
+        public static nfloat GetCarrierFrequencyForColor (NSColor color)
         {
             var source = SynthSettings.Instance.GetSourceForTarget(TargetModifier.CarrierFrequency);
 
@@ -16,7 +16,7 @@ namespace ImageMusic
             return val * multiplier;
         }
 
-        public static nfloat GetModulatorFrequency(this NSColor color)
+        public static nfloat GetModulatorFrequencyForColor (NSColor color)
         {
             var source = SynthSettings.Instance.GetSourceForTarget(TargetModifier.ModifierFrequency);
 
@@ -27,7 +27,7 @@ namespace ImageMusic
             return val * multiplier;
         }
 
-        public static nfloat GetNoteLength (this NSColor color)
+        public static uint GetNoteLengthForColor ( NSColor color)
         {
             var source = SynthSettings.Instance.GetSourceForTarget(TargetModifier.NoteLength);
 
@@ -35,10 +35,10 @@ namespace ImageMusic
 
             nfloat val = ValueForComponent(source, color);
 
-            return val * multiplier;
+            return (uint)Math.Max(1024, val * multiplier);
         }
 
-        public static nfloat GetOctave (this NSColor color)
+        public static nfloat GetOctaveForColor (NSColor color)
         {
             var source = SynthSettings.Instance.GetSourceForTarget(TargetModifier.Octave);
 
@@ -49,7 +49,16 @@ namespace ImageMusic
             return val * multiplier;
         }
 
-        static nfloat ValueForComponent (ColorComponent component, NSColor color)
+        public static float GetPanForColor (NSColor color)
+        {
+            var source = SynthSettings.Instance.GetSourceForTarget(TargetModifier.Pan);
+
+            float val = (float)ValueForComponent(source, color);
+
+            return val.ConvertToRange(0, 1, -.75f, .75f);
+        }
+
+        static nfloat ValueForComponent(ColorComponent component, NSColor color)
         {
             nfloat val = 0;
 
@@ -66,6 +75,9 @@ namespace ImageMusic
                     break;
                 case ColorComponent.Brightness:
                     val = color.BrightnessComponent;
+                    break;
+                case ColorComponent.Hue:
+                    val = color.HueComponent;
                     break;
             }
 
