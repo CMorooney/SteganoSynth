@@ -13,6 +13,7 @@ namespace ImageMusic
             try
             {
                 var request = WebRequest.Create(RandomImageEndpoint);
+                request.Timeout = 3000;
                 var response = await request.GetResponseAsync();
 
                 var stream = response.GetResponseStream();

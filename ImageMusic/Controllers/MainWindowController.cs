@@ -38,7 +38,6 @@ namespace ImageMusic
             base.WindowDidLoad();
 
             Synth = new Synth();
-            Synth.Init();
             Synth.NotePlayedForColor += SynthDidPlayNoteForColor;
 
             NodeEditorWindowController = new NodeEditorWindowController();
@@ -61,14 +60,24 @@ namespace ImageMusic
                 if (image != null)
                 {
                     BeginInvokeOnMainThread(() => ImageCell.Image = image);
-                    ChosenImage = image;
+                    SetImage(image);
+                }
+                else
+                {
+                    ErrorLabel.StringValue = "Error getting random image, try again";
                 }
             }); 
         }
 
         partial void ImagePicked(NSImageView sender)
         {
-            ChosenImage = sender.Image;
+            SetImage(sender.Image);
+        }
+
+        void SetImage(NSImage image)
+        {
+            ChosenImage = image;
+            BeginInvokeOnMainThread(() => PausePlayButton.Title = "Play");
         }
 
         partial void ScaleChosen(NSPopUpButtonCell sender)
@@ -98,12 +107,24 @@ namespace ImageMusic
             {
                 ShowValidationError();
             }
+            else if (Synth.IsPlaying)
+            {
+                PauseSynth();
+            }
+            else if (Synth.IsPaused)
+            {
+                ContinueSynth();
+            }
             else
             {
-                ClearErrorMessage();
-                ResetProgressIndicator();
-                Synth.PlayImageInScale(ChosenImage, ChosenScale.Value);
+                StartNewSynth();
             }
+        }
+
+        partial void StopClicked(NSObject sender)
+        {
+            StopSynth();
+            StopButton.Enabled = false;
         }
 
         void SynthDidPlayNoteForColor(NSColor color)
@@ -113,6 +134,47 @@ namespace ImageMusic
                 ColorIndicator.FillColor = color;
                 ProgressIndicator.IncrementBy(1);
             });
+        }
+
+        #endregion
+
+        #region Synth handling
+
+        void StartNewSynth()
+        {
+            ImageCell.Enabled = false;
+            ImageCell.Editable = false;
+            StopButton.Enabled = true;
+            RandomImageButton.Enabled = false;
+            BeginInvokeOnMainThread(() => PausePlayButton.Title = "Pause");
+            ClearErrorMessage();
+            ResetProgressIndicator();
+            Synth.PlayNewImageInScale(ChosenImage, ChosenScale.Value);
+        }
+
+        void PauseSynth()
+        {
+            Synth.Pause();
+            StopButton.Enabled = true;
+            BeginInvokeOnMainThread(() => PausePlayButton.Title = "Play");
+        }
+
+        void ContinueSynth()
+        {
+            Synth.ContinuePlaying();
+            StopButton.Enabled = true;
+            BeginInvokeOnMainThread(() => PausePlayButton.Title = "Pause");
+        }
+
+        void StopSynth()
+        {
+            ImageCell.Enabled = true;
+            ImageCell.Editable = true;
+            RandomImageButton.Enabled = true;
+            Synth.Stop();
+            BeginInvokeOnMainThread(() => PausePlayButton.Title = "Play");
+            ColorIndicator.FillColor = NSColor.Clear;
+            ProgressIndicator.DoubleValue = 0;
         }
 
         #endregion

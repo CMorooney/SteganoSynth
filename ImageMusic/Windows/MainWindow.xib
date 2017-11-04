@@ -14,7 +14,9 @@
                 <outlet property="ImageCell" destination="Sbi-KF-u5t" id="uqv-WG-yww"/>
                 <outlet property="PausePlayButton" destination="RP2-Yo-6cv" id="bMH-c1-F5f"/>
                 <outlet property="ProgressIndicator" destination="4H1-Gz-JYE" id="bdV-FV-guY"/>
+                <outlet property="RandomImageButton" destination="nLL-pH-tSz" id="NyO-P1-vOJ"/>
                 <outlet property="ScaleChooser" destination="gLx-JG-HmN" id="KAF-Y6-5tU"/>
+                <outlet property="StopButton" destination="Qpd-rr-8M6" id="tOw-MR-fYS"/>
                 <outlet property="window" destination="2" id="6"/>
             </connections>
         </customObject>
@@ -32,20 +34,11 @@
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="5B9-i0-wEa">
                         <rect key="frame" x="153" y="178" width="299" height="159"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
-                        <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="Sbi-KF-u5t"/>
+                        <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="grayBezel" id="Sbi-KF-u5t"/>
                         <connections>
                             <action selector="ImagePicked:" target="-2" id="m6V-Bu-8hT"/>
                         </connections>
                     </imageView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="LWO-gL-zhx">
-                        <rect key="frame" x="18" y="14" width="570" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="V0q-HJ-ecM">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" red="1" green="0.0" blue="0.069507275414034453" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <button verticalHuggingPriority="750" misplaced="YES" id="RP2-Yo-6cv">
                         <rect key="frame" x="226" y="32" width="154" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -100,7 +93,7 @@
                     </button>
                     <button verticalHuggingPriority="750" misplaced="YES" id="nLL-pH-tSz">
                         <rect key="frame" x="225" y="126" width="154" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Get Random Image" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="w57-sm-oDp">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -109,9 +102,29 @@
                             <action selector="RandomImageClicked:" target="-2" id="nkc-hI-AWs"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" misplaced="YES" id="Qpd-rr-8M6">
+                        <rect key="frame" x="226" y="-1" width="153" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3JL-QG-MvU">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="StopClicked:" target="-2" id="ky5-jN-MIM"/>
+                        </connections>
+                    </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="LWO-gL-zhx">
+                        <rect key="frame" x="17" y="108" width="570" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="V0q-HJ-ecM">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" red="1" green="0.0" blue="0.069507275414034453" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="145" y="121"/>
+            <point key="canvasLocation" x="152" y="3"/>
         </window>
     </objects>
 </document>

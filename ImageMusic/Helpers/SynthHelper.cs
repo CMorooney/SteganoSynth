@@ -55,7 +55,7 @@ namespace ImageMusic
 
             float val = (float)ValueForComponent(source, color);
 
-            return val.ConvertToRange(0, 1, -.75f, .75f);
+            return val.ConvertToRange(0, 1, -.5f, .5f);
         }
 
         static nfloat ValueForComponent(ColorComponent component, NSColor color)

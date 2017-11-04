@@ -7,7 +7,7 @@
         Red,
 
         [FriendlyName("Green Component")]
-        [Color (0, 255, 0)]
+        [Color (63, 122, 77)]
         Green,
 
         [FriendlyName("Blue Component")]

@@ -16,15 +16,18 @@ namespace ImageMusic
     public class Synth
     {
         public event NotePlayedForColor NotePlayedForColor;
+        public bool IsPlaying => PlayerNode?.Playing ?? false;
+        public bool IsPaused;
+
+        bool ForceStop;
 
         const int InFlightAudioBuffers = 2;
         const int SamplesPerBuffer = 1000000000;
 
         FrequencyDictionary FrequenciesByOctave;
-        List<int> AllFrequencies;
 
         AVAudioEngine AudioEngine = new AVAudioEngine();
-        AVAudioPlayerNode PlayerNode = new AVAudioPlayerNode();
+        AVAudioPlayerNode PlayerNode;
         AVAudioFormat AudioFormat = new AVAudioFormat(44100, 2);
         List<AVAudioPcmBuffer> AudioBuffers = new List<AVAudioPcmBuffer>();
         int BufferIndex;
@@ -33,9 +36,14 @@ namespace ImageMusic
 
         #region Initialization
 
-        public void Init()
+        public Synth()
         {
-            InitFrequencies();
+            Init();
+        }
+
+        void Init()
+        {
+            FrequenciesByOctave = new FrequencyDictionary();
 
             for (int i = 0; i < InFlightAudioBuffers; i++)
             {
@@ -43,30 +51,46 @@ namespace ImageMusic
                 AudioBuffers.Add(buffer);
             }
 
+            PlayerNode = new AVAudioPlayerNode { Volume = .8f };
             AudioEngine.AttachNode(PlayerNode);
             AudioEngine.Connect(PlayerNode, AudioEngine.MainMixerNode, AudioFormat);
             AudioEngine.StartAndReturnError(out var error);
         }
 
-        void InitFrequencies()
-        {
-            FrequenciesByOctave = new FrequencyDictionary();
+        #endregion
 
-            AllFrequencies = new List<int>();
-            foreach (var fq in FrequenciesByOctave.Values)
+        public void Stop()
+        {
+            if (IsPlaying)
             {
-                AllFrequencies.AddRange(fq);
+                ForceStop = true;
+                PlayerNode.Reset();
+                PlayerNode.Stop();
             }
         }
 
-        #endregion
-
-        public void PlayImageInScale(NSImage image, Scale scale)
+        public void Pause()
         {
+            IsPaused = true;
+            PlayerNode.Pause();
+        }
+
+        public void ContinuePlaying()
+        {
+            IsPaused = false;
+            PlayerNode.Play();
+        }
+
+        public void PlayNewImageInScale(NSImage image, Scale scale)
+        {
+            ForceStop = false;
+
             if (image.Size.Width > 150 || image.Size.Height > 150)
             {
                 image = ImageHelpers.ResizeImage(image, new CGSize(150, 150));
             }
+
+            PlayerNode.Play();
 
             using (var imageRepresentation = new NSBitmapImageRep(image.AsTiff()))
             {
@@ -76,6 +100,11 @@ namespace ImageMusic
                 {
                     for (var y = 0; y < imageSize.Height; y++)
                     {
+                        if (ForceStop)
+                        {
+                            return;
+                        }
+
                         var color = imageRepresentation.ColorAt(x, y);
 
                         var carrierFrequency = GetCarrierFrequencyForColor(color);
@@ -110,7 +139,14 @@ namespace ImageMusic
             {
                 var sampleTime = 0f;
 
-                Semaphore.Wait();
+                if (!ForceStop)
+                {
+                    Semaphore.Wait();
+                }
+                else
+                {
+                    return;
+                }
 
                 var outChannels = AudioFormat.ChannelCount;
                 var outDataPointers = new float*[outChannels];
@@ -143,7 +179,6 @@ namespace ImageMusic
                 PlayerNode.Pan = pan;
 
                 NotePlayedForColor?.Invoke(color);
-                PlayerNode.Play();
 
                 PlayerNode.ScheduleBuffer(buffer, () =>
                 {

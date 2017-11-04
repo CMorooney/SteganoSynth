@@ -28,7 +28,13 @@ namespace ImageMusic
 		AppKit.NSProgressIndicator ProgressIndicator { get; set; }
 
 		[Outlet]
+		AppKit.NSButton RandomImageButton { get; set; }
+
+		[Outlet]
 		AppKit.NSPopUpButton ScaleChooser { get; set; }
+
+		[Outlet]
+		AppKit.NSButton StopButton { get; set; }
 
 		[Action ("EditNodesClicked:")]
 		partial void EditNodesClicked (AppKit.NSButton sender);
@@ -44,12 +50,20 @@ namespace ImageMusic
 
 		[Action ("StartClicked:")]
 		partial void StartClicked (AppKit.NSButton sender);
+
+		[Action ("StopClicked:")]
+		partial void StopClicked (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (ImageCell != null) {
-				ImageCell.Dispose ();
-				ImageCell = null;
+			if (RandomImageButton != null) {
+				RandomImageButton.Dispose ();
+				RandomImageButton = null;
+			}
+
+			if (StopButton != null) {
+				StopButton.Dispose ();
+				StopButton = null;
 			}
 
 			if (ColorIndicator != null) {
@@ -60,6 +74,11 @@ namespace ImageMusic
 			if (ErrorLabel != null) {
 				ErrorLabel.Dispose ();
 				ErrorLabel = null;
+			}
+
+			if (ImageCell != null) {
+				ImageCell.Dispose ();
+				ImageCell = null;
 			}
 
 			if (PausePlayButton != null) {
