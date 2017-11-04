@@ -110,6 +110,7 @@
     <Compile Include="Extensions\PrimitiveExtensions.cs" />
     <Compile Include="Helpers\SynthHelper.cs" />
     <Compile Include="Services\RandomImageService.cs" />
+    <Compile Include="SynthObjects\Synth.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Windows\MainWindow.xib" />
@@ -129,6 +130,7 @@
     <Folder Include="Views\Nodes\" />
     <Folder Include="Models\" />
     <Folder Include="Services\" />
+    <Folder Include="SynthObjects\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>
