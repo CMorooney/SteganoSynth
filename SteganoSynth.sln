@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageMusic", "ImageMusic\ImageMusic.csproj", "{F9B41685-758F-4735-BAD2-15F4400B9825}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteganoSynth", "SteganoSynth\SteganoSynth.csproj", "{F9B41685-758F-4735-BAD2-15F4400B9825}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
