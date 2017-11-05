@@ -22,6 +22,9 @@ namespace ImageMusic
 		AppKit.NSImageCell ImageCell { get; set; }
 
 		[Outlet]
+		AppKit.NSButtonCell NodeEditorButton { get; set; }
+
+		[Outlet]
 		AppKit.NSButton PausePlayButton { get; set; }
 
 		[Outlet]
@@ -56,16 +59,6 @@ namespace ImageMusic
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (RandomImageButton != null) {
-				RandomImageButton.Dispose ();
-				RandomImageButton = null;
-			}
-
-			if (StopButton != null) {
-				StopButton.Dispose ();
-				StopButton = null;
-			}
-
 			if (ColorIndicator != null) {
 				ColorIndicator.Dispose ();
 				ColorIndicator = null;
@@ -91,9 +84,24 @@ namespace ImageMusic
 				ProgressIndicator = null;
 			}
 
+			if (RandomImageButton != null) {
+				RandomImageButton.Dispose ();
+				RandomImageButton = null;
+			}
+
+			if (NodeEditorButton != null) {
+				NodeEditorButton.Dispose ();
+				NodeEditorButton = null;
+			}
+
 			if (ScaleChooser != null) {
 				ScaleChooser.Dispose ();
 				ScaleChooser = null;
+			}
+
+			if (StopButton != null) {
+				StopButton.Dispose ();
+				StopButton = null;
 			}
 		}
 	}

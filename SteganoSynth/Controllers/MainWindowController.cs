@@ -143,11 +143,15 @@ namespace ImageMusic
         {
             ImageCell.Enabled = false;
             ImageCell.Editable = false;
-            StopButton.Enabled = true;
+            NodeEditorButton.Enabled = false;
             RandomImageButton.Enabled = false;
+
+            StopButton.Enabled = true;
+
             BeginInvokeOnMainThread (() => PausePlayButton.Image = NSImage.ImageNamed("Pause"));
             ClearErrorMessage();
             ResetProgressIndicator();
+
             Synth.PlayNewImageInScale(ChosenImage, ChosenScale.Value);
         }
 
@@ -170,6 +174,7 @@ namespace ImageMusic
             ImageCell.Enabled = true;
             ImageCell.Editable = true;
             RandomImageButton.Enabled = true;
+            NodeEditorButton.Enabled = true;
             Synth.Stop();
             BeginInvokeOnMainThread(() => PausePlayButton.Image = NSImage.ImageNamed("Play"));
             ColorIndicator.FillColor = NSColor.Clear;

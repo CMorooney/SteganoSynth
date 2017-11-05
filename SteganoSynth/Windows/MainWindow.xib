@@ -12,6 +12,7 @@
                 <outlet property="ColorIndicator" destination="YIR-Ah-Ypf" id="Ztf-iZ-Hr7"/>
                 <outlet property="ErrorLabel" destination="LWO-gL-zhx" id="ped-32-zAA"/>
                 <outlet property="ImageCell" destination="Sbi-KF-u5t" id="uqv-WG-yww"/>
+                <outlet property="NodeEditorButton" destination="sBI-EL-3Ab" id="mij-d7-LNo"/>
                 <outlet property="PausePlayButton" destination="RP2-Yo-6cv" id="bMH-c1-F5f"/>
                 <outlet property="ProgressIndicator" destination="4H1-Gz-JYE" id="bdV-FV-guY"/>
                 <outlet property="RandomImageButton" destination="nLL-pH-tSz" id="NyO-P1-vOJ"/>
