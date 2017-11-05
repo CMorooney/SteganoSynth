@@ -64,6 +64,12 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-512.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-512%402x.png" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Play.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Play.imageset\play.png" />
+    <ImageAsset Include="Assets.xcassets\Pause.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Pause.imageset\pause.png" />
+    <ImageAsset Include="Assets.xcassets\Stop.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Stop.imageset\stop.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -131,6 +137,9 @@
     <Folder Include="Models\" />
     <Folder Include="Services\" />
     <Folder Include="SynthObjects\" />
+    <Folder Include="Assets.xcassets\Play.imageset\" />
+    <Folder Include="Assets.xcassets\Pause.imageset\" />
+    <Folder Include="Assets.xcassets\Stop.imageset\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>
