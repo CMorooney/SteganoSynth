@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Net;
 using AppKit;
 
@@ -20,7 +21,7 @@ namespace ImageMusic
 
                 return NSImage.FromStream(stream);
             }
-            catch//this should be smarter
+            catch (Exception e)
             {
                 return null;
             }

@@ -22,11 +22,12 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Stegano Synth" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" animationBehavior="default" id="2" customClass="MainWindow">
+        <window title="SteganoSynth" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" animationBehavior="default" id="2" customClass="MainWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="131" y="74" width="606" height="354"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
             <value key="minSize" type="size" width="606" height="354"/>
+            <value key="maxSize" type="size" width="606" height="354"/>
             <view key="contentView" id="3">
                 <rect key="frame" x="0.0" y="0.0" width="606" height="354"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -40,9 +41,9 @@
                         </connections>
                     </imageView>
                     <button verticalHuggingPriority="750" misplaced="YES" id="RP2-Yo-6cv">
-                        <rect key="frame" x="226" y="32" width="154" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="push" title="Play" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jCS-ty-g3G">
+                        <rect key="frame" x="267" y="93" width="39" height="38"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="round" bezelStyle="circular" image="Play" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jCS-ty-g3G">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -81,8 +82,8 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     </progressIndicator>
                     <button verticalHuggingPriority="750" misplaced="YES" id="kXl-X7-WqN">
-                        <rect key="frame" x="226" y="65" width="154" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <rect key="frame" x="301" y="126" width="154" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Node Editor" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sBI-EL-3Ab">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -92,8 +93,8 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" misplaced="YES" id="nLL-pH-tSz">
-                        <rect key="frame" x="225" y="126" width="154" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <rect key="frame" x="150" y="126" width="154" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Get Random Image" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="w57-sm-oDp">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -102,19 +103,8 @@
                             <action selector="RandomImageClicked:" target="-2" id="nkc-hI-AWs"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" misplaced="YES" id="Qpd-rr-8M6">
-                        <rect key="frame" x="226" y="-1" width="153" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3JL-QG-MvU">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="StopClicked:" target="-2" id="ky5-jN-MIM"/>
-                        </connections>
-                    </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="LWO-gL-zhx">
-                        <rect key="frame" x="17" y="108" width="570" height="17"/>
+                        <rect key="frame" x="18" y="29" width="570" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="V0q-HJ-ecM">
                             <font key="font" metaFont="system"/>
@@ -122,9 +112,24 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button verticalHuggingPriority="750" misplaced="YES" id="Qpd-rr-8M6">
+                        <rect key="frame" x="301" y="93" width="39" height="38"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="round" bezelStyle="circular" image="Stop" imagePosition="overlaps" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3JL-QG-MvU">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="StopClicked:" target="-2" id="ky5-jN-MIM"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <point key="canvasLocation" x="152" y="3"/>
         </window>
     </objects>
+    <resources>
+        <image name="Play" width="24" height="24"/>
+        <image name="Stop" width="24" height="24"/>
+    </resources>
 </document>

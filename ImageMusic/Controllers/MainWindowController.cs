@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Foundation;
 using AppKit;
 using System.Linq;
-using CoreFoundation;
 
 namespace ImageMusic
 {
@@ -64,7 +63,7 @@ namespace ImageMusic
                 }
                 else
                 {
-                    ErrorLabel.StringValue = "Error getting random image, try again";
+                    BeginInvokeOnMainThread(() => ErrorLabel.StringValue = "Error getting random image, try again");
                 }
             }); 
         }
@@ -77,7 +76,7 @@ namespace ImageMusic
         void SetImage(NSImage image)
         {
             ChosenImage = image;
-            BeginInvokeOnMainThread(() => PausePlayButton.Title = "Play");
+            BeginInvokeOnMainThread(() => PausePlayButton.Image = NSImage.ImageNamed("Play"));
         }
 
         partial void ScaleChosen(NSPopUpButtonCell sender)
@@ -129,7 +128,7 @@ namespace ImageMusic
 
         void SynthDidPlayNoteForColor(NSColor color)
         {
-            DispatchQueue.MainQueue.DispatchAsync(() =>
+            BeginInvokeOnMainThread(() =>
             {
                 ColorIndicator.FillColor = color;
                 ProgressIndicator.IncrementBy(1);
@@ -146,7 +145,7 @@ namespace ImageMusic
             ImageCell.Editable = false;
             StopButton.Enabled = true;
             RandomImageButton.Enabled = false;
-            BeginInvokeOnMainThread(() => PausePlayButton.Title = "Pause");
+            BeginInvokeOnMainThread (() => PausePlayButton.Image = NSImage.ImageNamed("Pause"));
             ClearErrorMessage();
             ResetProgressIndicator();
             Synth.PlayNewImageInScale(ChosenImage, ChosenScale.Value);
@@ -156,14 +155,14 @@ namespace ImageMusic
         {
             Synth.Pause();
             StopButton.Enabled = true;
-            BeginInvokeOnMainThread(() => PausePlayButton.Title = "Play");
+            BeginInvokeOnMainThread(() => PausePlayButton.Image = NSImage.ImageNamed("Play"));
         }
 
         void ContinueSynth()
         {
             Synth.ContinuePlaying();
             StopButton.Enabled = true;
-            BeginInvokeOnMainThread(() => PausePlayButton.Title = "Pause");
+            BeginInvokeOnMainThread(() => PausePlayButton.Image = NSImage.ImageNamed("Pause"));
         }
 
         void StopSynth()
@@ -172,7 +171,7 @@ namespace ImageMusic
             ImageCell.Editable = true;
             RandomImageButton.Enabled = true;
             Synth.Stop();
-            BeginInvokeOnMainThread(() => PausePlayButton.Title = "Play");
+            BeginInvokeOnMainThread(() => PausePlayButton.Image = NSImage.ImageNamed("Play"));
             ColorIndicator.FillColor = NSColor.Clear;
             ProgressIndicator.DoubleValue = 0;
         }

@@ -42,7 +42,7 @@ namespace ImageMusic
         {
             var source = SynthSettings.Instance.GetSourceForTarget(TargetModifier.Octave);
 
-            const int multiplier = 10000;
+            const int multiplier = 10;
 
             nfloat val = ValueForComponent(source, color);
 
