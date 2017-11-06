@@ -53,16 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-128.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-128%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-16.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-16%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-256.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-256%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-32.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-32%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-512.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-512%402x.png" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Play.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Play.imageset\play.png" />
@@ -72,6 +64,16 @@
     <ImageAsset Include="Assets.xcassets\Stop.imageset\stop.png" />
     <ImageAsset Include="Assets.xcassets\Gradient.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Gradient.imageset\gradient.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iTunesArtwork%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iTunesArtwork%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iTunesArtwork%401x copy.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\SteganoSynthIcon_128.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\SteganoSynthIcon_256.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\SteganoSynthIcon_256 copy.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\SteganoSynthIcon_64.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\SteganoSynthIcon_32.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\SteganoSynthIcon_32 copy.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\SteganoSynthIcon_16.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
