@@ -8,7 +8,7 @@ namespace ImageMusic
 {
     public partial class MainWindowController : NSWindowController
     {
-        NSImage ChosenImage;
+        NSImage ChosenImage = NSImage.ImageNamed("Gradient");
         Scale? ChosenScale;
         NodeEditorWindowController NodeEditorWindowController;
         InfoWindowController InfoWindowController;
@@ -216,11 +216,12 @@ namespace ImageMusic
 
         #region Validation and errors
 
-        bool InputIsValid => (ChosenImage?.IsValid ?? false) && (ChosenScale.HasValue);
+        bool InputIsValid => (ChosenImage?.IsValid ?? false) && (ChosenScale.HasValue) && (SynthSettings.Instance.IsComplete());
 
         void ShowValidationError()
         {
-            ErrorLabel.StringValue = "Please provide and image and choose a scale";
+            ErrorLabel.StringValue = "Please provide and image, " +
+                "choose a scale,\nand ensure that all sources have targets in the node editor";
         }
 
         void ShowAPIError()

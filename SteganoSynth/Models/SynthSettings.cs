@@ -61,8 +61,9 @@ namespace ImageMusic
 
         public bool IsComplete()
         {
-            var sourceCount = Enum.GetNames(typeof(ColorComponent)).Length;
-            return CurrentSettings.Count == sourceCount;
+            var duplicates = CurrentSettings.Select(s => s.Value).GroupBy(s => s).Where(s => s.Count () > 1);
+
+            return duplicates.Count() == 0;
         }
     }
 }
