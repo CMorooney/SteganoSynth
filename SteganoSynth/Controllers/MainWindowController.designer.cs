@@ -48,6 +48,9 @@ namespace ImageMusic
 		[Action ("ImagePicked:")]
 		partial void ImagePicked (AppKit.NSImageView sender);
 
+		[Action ("InfoClicked:")]
+		partial void InfoClicked (Foundation.NSObject sender);
+
 		[Action ("RandomImageClicked:")]
 		partial void RandomImageClicked (AppKit.NSButton sender);
 
@@ -65,11 +68,6 @@ namespace ImageMusic
 			if (ColorIndicator != null) {
 				ColorIndicator.Dispose ();
 				ColorIndicator = null;
-			}
-
-			if (RandomImageSpinner != null) {
-				RandomImageSpinner.Dispose ();
-				RandomImageSpinner = null;
 			}
 
 			if (ErrorLabel != null) {
@@ -100,6 +98,11 @@ namespace ImageMusic
 			if (RandomImageButton != null) {
 				RandomImageButton.Dispose ();
 				RandomImageButton = null;
+			}
+
+			if (RandomImageSpinner != null) {
+				RandomImageSpinner.Dispose ();
+				RandomImageSpinner = null;
 			}
 
 			if (ScaleChooser != null) {

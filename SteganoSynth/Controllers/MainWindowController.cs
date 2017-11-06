@@ -11,6 +11,7 @@ namespace ImageMusic
         NSImage ChosenImage;
         Scale? ChosenScale;
         NodeEditorWindowController NodeEditorWindowController;
+        InfoWindowController InfoWindowController;
         Synth Synth;
 
         #region Constructors
@@ -40,6 +41,7 @@ namespace ImageMusic
             Synth.NotePlayedForColor += SynthDidPlayNoteForColor;
 
             NodeEditorWindowController = new NodeEditorWindowController();
+            InfoWindowController = new InfoWindowController();
 
             InitScaleChooser();
         }
@@ -47,6 +49,14 @@ namespace ImageMusic
         #endregion
 
         #region Event handlers
+
+        partial void InfoClicked(NSObject sender)
+        {
+            if (!InfoWindowController.Window?.IsVisible ?? false)
+            {
+                InfoWindowController.ShowWindow(this);
+            }
+        }
 
         partial void RandomImageClicked(NSButton sender)
         {

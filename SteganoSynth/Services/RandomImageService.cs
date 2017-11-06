@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Net;
 using AppKit;
+using Foundation;
 
 namespace ImageMusic
 {
@@ -17,9 +18,7 @@ namespace ImageMusic
                 request.Timeout = 3000;
                 var response = await request.GetResponseAsync();
 
-                var stream = response.GetResponseStream();
-
-                return NSImage.FromStream(stream);
+                return new NSImage(NSUrl.FromString(response.ResponseUri.ToString()));
             }
             catch (Exception e)
             {

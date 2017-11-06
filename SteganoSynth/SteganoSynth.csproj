@@ -70,6 +70,8 @@
     <ImageAsset Include="Assets.xcassets\Pause.imageset\pause.png" />
     <ImageAsset Include="Assets.xcassets\Stop.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Stop.imageset\stop.png" />
+    <ImageAsset Include="Assets.xcassets\Gradient.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Gradient.imageset\gradient.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -121,6 +123,14 @@
     <Compile Include="Views\ViewWithABackgroundColorBecauseApparentlyThatsALotToAskFor.designer.cs">
       <DependentUpon>ViewWithABackgroundColorBecauseApparentlyThatsALotToAskFor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\InfoWindowController.cs" />
+    <Compile Include="Controllers\InfoWindowController.designer.cs">
+      <DependentUpon>InfoWindowController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\InfoWindow.cs" />
+    <Compile Include="Windows\InfoWindow.designer.cs">
+      <DependentUpon>InfoWindow.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Windows\MainWindow.xib" />
@@ -128,6 +138,7 @@
     <InterfaceDefinition Include="Windows\NodeEditorWindow.xib" />
     <InterfaceDefinition Include="Views\NodeEditorView.xib" />
     <InterfaceDefinition Include="Views\ViewWithABackgroundColorBecauseApparentlyThatsALotToAskFor.xib" />
+    <InterfaceDefinition Include="Windows\InfoWindow.xib" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -145,6 +156,7 @@
     <Folder Include="Assets.xcassets\Play.imageset\" />
     <Folder Include="Assets.xcassets\Pause.imageset\" />
     <Folder Include="Assets.xcassets\Stop.imageset\" />
+    <Folder Include="Assets.xcassets\Gradient.imageset\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>
