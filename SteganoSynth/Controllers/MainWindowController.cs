@@ -130,7 +130,7 @@ namespace ImageMusic
         {
             BeginInvokeOnMainThread(() =>
             {
-                ColorIndicator.FillColor = color;
+                ColorIndicator.SetBackgroundColor(color);
                 ProgressIndicator.IncrementBy(1);
             });
         }
@@ -177,7 +177,7 @@ namespace ImageMusic
             NodeEditorButton.Enabled = true;
             Synth.Stop();
             BeginInvokeOnMainThread(() => PausePlayButton.Image = NSImage.ImageNamed("Play"));
-            ColorIndicator.FillColor = NSColor.Clear;
+            ColorIndicator.SetBackgroundColor (NSColor.Clear);
             ProgressIndicator.DoubleValue = 0;
         }
 

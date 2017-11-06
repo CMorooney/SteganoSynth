@@ -13,7 +13,7 @@ namespace ImageMusic
 	partial class MainWindowController
 	{
 		[Outlet]
-		AppKit.NSBox ColorIndicator { get; set; }
+		ImageMusic.ViewWithABackgroundColorBecauseApparentlyThatsALotToAskFor ColorIndicator { get; set; }
 
 		[Outlet]
 		AppKit.NSTextField ErrorLabel { get; set; }
@@ -74,6 +74,11 @@ namespace ImageMusic
 				ImageCell = null;
 			}
 
+			if (NodeEditorButton != null) {
+				NodeEditorButton.Dispose ();
+				NodeEditorButton = null;
+			}
+
 			if (PausePlayButton != null) {
 				PausePlayButton.Dispose ();
 				PausePlayButton = null;
@@ -87,11 +92,6 @@ namespace ImageMusic
 			if (RandomImageButton != null) {
 				RandomImageButton.Dispose ();
 				RandomImageButton = null;
-			}
-
-			if (NodeEditorButton != null) {
-				NodeEditorButton.Dispose ();
-				NodeEditorButton = null;
 			}
 
 			if (ScaleChooser != null) {

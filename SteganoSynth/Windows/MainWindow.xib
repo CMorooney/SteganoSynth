@@ -3,13 +3,12 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
-        <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowController">
             <connections>
-                <outlet property="ColorIndicator" destination="YIR-Ah-Ypf" id="Ztf-iZ-Hr7"/>
+                <outlet property="ColorIndicator" destination="OOY-xh-XPk" id="3T7-qu-jvA"/>
                 <outlet property="ErrorLabel" destination="LWO-gL-zhx" id="ped-32-zAA"/>
                 <outlet property="ImageCell" destination="Sbi-KF-u5t" id="uqv-WG-yww"/>
                 <outlet property="NodeEditorButton" destination="sBI-EL-3Ab" id="mij-d7-LNo"/>
@@ -33,14 +32,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="606" height="354"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="5B9-i0-wEa">
-                        <rect key="frame" x="153" y="178" width="299" height="159"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
-                        <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="grayBezel" id="Sbi-KF-u5t"/>
-                        <connections>
-                            <action selector="ImagePicked:" target="-2" id="m6V-Bu-8hT"/>
-                        </connections>
-                    </imageView>
                     <button verticalHuggingPriority="750" misplaced="YES" id="RP2-Yo-6cv">
                         <rect key="frame" x="267" y="93" width="39" height="38"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -52,16 +43,8 @@
                             <action selector="StartClicked:" target="-2" id="gYE-Y1-eAx"/>
                         </connections>
                     </button>
-                    <box misplaced="YES" boxType="custom" cornerRadius="4" title="Box" id="YIR-Ah-Ypf">
-                        <rect key="frame" x="492" y="217" width="104" height="117"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
-                        <view key="contentView" id="JZ4-fR-kzT">
-                            <rect key="frame" x="1" y="1" width="102" height="115"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        </view>
-                    </box>
                     <popUpButton verticalHuggingPriority="750" misplaced="YES" id="gLx-JG-HmN">
-                        <rect key="frame" x="18" y="310" width="133" height="26"/>
+                        <rect key="frame" x="18" y="310" width="123" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" title="Scale" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="GRU-Sq-LFE" id="7Q9-fK-56w">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -124,10 +107,25 @@
                             <action selector="StopClicked:" target="-2" id="ky5-jN-MIM"/>
                         </connections>
                     </button>
+                    <customView misplaced="YES" id="OOY-xh-XPk" customClass="ViewWithABackgroundColorBecauseApparentlyThatsALotToAskFor">
+                        <rect key="frame" x="146" y="174" width="313" height="167"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="5B9-i0-wEa">
+                                <rect key="frame" x="8" y="6" width="298" height="156"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="grayBezel" id="Sbi-KF-u5t"/>
+                                <connections>
+                                    <action selector="ImagePicked:" target="-2" id="m6V-Bu-8hT"/>
+                                </connections>
+                            </imageView>
+                        </subviews>
+                    </customView>
                 </subviews>
             </view>
             <point key="canvasLocation" x="152" y="3"/>
         </window>
+        <customFormatter id="aYU-ui-0l9"/>
     </objects>
     <resources>
         <image name="Play" width="24" height="24"/>

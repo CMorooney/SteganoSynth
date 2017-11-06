@@ -117,12 +117,17 @@
     <Compile Include="Helpers\SynthHelper.cs" />
     <Compile Include="Services\RandomImageService.cs" />
     <Compile Include="SynthObjects\Synth.cs" />
+    <Compile Include="Views\ViewWithABackgroundColorBecauseApparentlyThatsALotToAskFor.cs" />
+    <Compile Include="Views\ViewWithABackgroundColorBecauseApparentlyThatsALotToAskFor.designer.cs">
+      <DependentUpon>ViewWithABackgroundColorBecauseApparentlyThatsALotToAskFor.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Windows\MainWindow.xib" />
     <InterfaceDefinition Include="Menus\MainMenu.xib" />
     <InterfaceDefinition Include="Windows\NodeEditorWindow.xib" />
     <InterfaceDefinition Include="Views\NodeEditorView.xib" />
+    <InterfaceDefinition Include="Views\ViewWithABackgroundColorBecauseApparentlyThatsALotToAskFor.xib" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
