@@ -9,6 +9,7 @@ Version one is very similar to David's video linked above -- add an image and th
 
 TODO
 ----
++ Add synth voice options
 + Add more fun scales/nodes
 + Add collage mode (up to 3 or 4 images/synths going at once)
 + Add file export
