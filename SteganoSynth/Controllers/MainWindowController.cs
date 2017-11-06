@@ -76,7 +76,11 @@ namespace ImageMusic
         void SetImage(NSImage image)
         {
             ChosenImage = image;
-            BeginInvokeOnMainThread(() => PausePlayButton.Image = NSImage.ImageNamed("Play"));
+            BeginInvokeOnMainThread(() =>
+            {
+                PausePlayButton.Image = NSImage.ImageNamed("Play");
+                ColorIndicator.SetBackgroundColor(NSColor.Clear);
+            });
         }
 
         partial void ScaleChosen(NSPopUpButtonCell sender)
@@ -176,8 +180,11 @@ namespace ImageMusic
             RandomImageButton.Enabled = true;
             NodeEditorButton.Enabled = true;
             Synth.Stop();
-            BeginInvokeOnMainThread(() => PausePlayButton.Image = NSImage.ImageNamed("Play"));
-            ColorIndicator.SetBackgroundColor (NSColor.Clear);
+            BeginInvokeOnMainThread(() =>
+            {
+                PausePlayButton.Image = NSImage.ImageNamed("Play");
+                ColorIndicator.SetBackgroundColor(NSColor.Clear);
+            });
             ProgressIndicator.DoubleValue = 0;
         }
 

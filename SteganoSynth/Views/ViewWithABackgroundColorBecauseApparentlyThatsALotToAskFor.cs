@@ -27,6 +27,8 @@ namespace ImageMusic
         // Shared initialization code
         void Initialize()
         {
+            WantsLayer = true;
+            Layer.CornerRadius = 5;
         }
 
         #endregion
