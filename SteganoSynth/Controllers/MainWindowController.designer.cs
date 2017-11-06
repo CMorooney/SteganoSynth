@@ -34,6 +34,9 @@ namespace ImageMusic
 		AppKit.NSButton RandomImageButton { get; set; }
 
 		[Outlet]
+		AppKit.NSProgressIndicator RandomImageSpinner { get; set; }
+
+		[Outlet]
 		AppKit.NSPopUpButton ScaleChooser { get; set; }
 
 		[Outlet]
@@ -62,6 +65,11 @@ namespace ImageMusic
 			if (ColorIndicator != null) {
 				ColorIndicator.Dispose ();
 				ColorIndicator = null;
+			}
+
+			if (RandomImageSpinner != null) {
+				RandomImageSpinner.Dispose ();
+				RandomImageSpinner = null;
 			}
 
 			if (ErrorLabel != null) {

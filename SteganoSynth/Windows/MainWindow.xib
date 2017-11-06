@@ -15,6 +15,7 @@
                 <outlet property="PausePlayButton" destination="RP2-Yo-6cv" id="bMH-c1-F5f"/>
                 <outlet property="ProgressIndicator" destination="4H1-Gz-JYE" id="bdV-FV-guY"/>
                 <outlet property="RandomImageButton" destination="nLL-pH-tSz" id="NyO-P1-vOJ"/>
+                <outlet property="RandomImageSpinner" destination="r6e-d1-J9S" id="Z5g-dN-2kf"/>
                 <outlet property="ScaleChooser" destination="gLx-JG-HmN" id="KAF-Y6-5tU"/>
                 <outlet property="StopButton" destination="Qpd-rr-8M6" id="tOw-MR-fYS"/>
                 <outlet property="window" destination="2" id="6"/>
@@ -119,6 +120,10 @@
                                     <action selector="ImagePicked:" target="-2" id="m6V-Bu-8hT"/>
                                 </connections>
                             </imageView>
+                            <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" style="spinning" id="r6e-d1-J9S">
+                                <rect key="frame" x="141" y="68" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
                         </subviews>
                     </customView>
                 </subviews>

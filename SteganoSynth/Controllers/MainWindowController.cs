@@ -54,6 +54,13 @@ namespace ImageMusic
 
             Task.Run(async () =>
             {
+                BeginInvokeOnMainThread(() =>
+                {
+                    RandomImageButton.Enabled = false;
+                    RandomImageSpinner.Hidden = false;
+                    RandomImageSpinner.StartAnimation(this);
+                });
+
                 var image = await service.GetRandomImage();
 
                 if (image != null)
@@ -65,6 +72,13 @@ namespace ImageMusic
                 {
                     BeginInvokeOnMainThread(() => ErrorLabel.StringValue = "Error getting random image, try again");
                 }
+
+                BeginInvokeOnMainThread(() =>
+                {
+                    RandomImageButton.Enabled = true;
+                    RandomImageSpinner.Hidden = true;
+                    RandomImageSpinner.StopAnimation(this);
+                });
             }); 
         }
 
