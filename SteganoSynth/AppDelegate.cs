@@ -14,9 +14,6 @@ namespace SteganoSynth
             MainWindowController.Window.MakeKeyAndOrderFront(this);
         }
 
-        public override void WillTerminate(NSNotification notification)
-        {
-            // Insert code here to tear down your application
-        }
+        public override bool ApplicationShouldTerminateAfterLastWindowClosed(NSApplication sender) => true;
     }
 }
