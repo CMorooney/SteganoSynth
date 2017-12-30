@@ -1,4 +1,4 @@
-﻿namespace ImageMusic
+﻿namespace SteganoSynth.Core
 {
     public enum Scale
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ImageMusic
+namespace SteganoSynth.Core
 {
     public class MiddleFrequenciesAttribute : Attribute
     {

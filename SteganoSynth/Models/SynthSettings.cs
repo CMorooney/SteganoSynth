@@ -1,12 +1,11 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
+using SteganoSynth.Core;
 
 namespace ImageMusic
 {
     public class SynthSettings
     {
-
         Dictionary<ColorComponent, TargetModifier> CurrentSettings { get; set; }
 
         #region Singleton implementation

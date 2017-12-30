@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteganoSynth", "SteganoSynth\SteganoSynth.csproj", "{F9B41685-758F-4735-BAD2-15F4400B9825}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteganoSynth.Core", "SteganoSynth.Core\SteganoSynth.Core.csproj", "{40D27086-E638-4CF1-AF0A-1D5921F774E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,5 +15,9 @@ Global
 		{F9B41685-758F-4735-BAD2-15F4400B9825}.Debug|x86.Build.0 = Debug|x86
 		{F9B41685-758F-4735-BAD2-15F4400B9825}.Release|x86.ActiveCfg = Release|x86
 		{F9B41685-758F-4735-BAD2-15F4400B9825}.Release|x86.Build.0 = Release|x86
+		{40D27086-E638-4CF1-AF0A-1D5921F774E9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{40D27086-E638-4CF1-AF0A-1D5921F774E9}.Debug|x86.Build.0 = Debug|Any CPU
+		{40D27086-E638-4CF1-AF0A-1D5921F774E9}.Release|x86.ActiveCfg = Release|Any CPU
+		{40D27086-E638-4CF1-AF0A-1D5921F774E9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

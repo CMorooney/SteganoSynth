@@ -8,6 +8,7 @@ using CoreFoundation;
 using CoreGraphics;
 using static ImageMusic.SynthHelper;
 using System.Runtime.InteropServices;
+using SteganoSynth.Core;
 
 namespace ImageMusic
 {

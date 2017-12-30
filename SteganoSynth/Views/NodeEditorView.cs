@@ -5,6 +5,7 @@ using CoreGraphics;
 using CoreAnimation;
 using System.Collections.Generic;
 using System.Linq;
+using SteganoSynth.Core;
 
 namespace ImageMusic
 {
@@ -189,7 +190,7 @@ namespace ImageMusic
             if (sourceNode != null)
             {
                 var color = sourceNode.ColorComponent.GetColor();
-                DrawingLayer.StrokeColor = color.CGColor;
+                DrawingLayer.StrokeColor = color.ToNSColor().CGColor;
             }
             else
             {
@@ -205,7 +206,7 @@ namespace ImageMusic
 
             if (sourceNode != null && sourceNode.GetHasConnection())
             {
-                color = sourceNode.ColorComponent.GetColor();
+                color = sourceNode.ColorComponent.GetColor().ToNSColor();
             }
 
             CurrentStartNode?.SetNodePortColor(color);
@@ -241,7 +242,7 @@ namespace ImageMusic
             var connectingSourceNode = GetSourceNode();
             var connectingTargetNode = GetTargetNode();
 
-            var layer = CreateLayer(connectingSourceNode.ColorComponent.GetColor());
+            var layer = CreateLayer(connectingSourceNode.ColorComponent.GetColor().ToNSColor());
             DrawPathOnLayer(layer);
 
             var existingConnections = NodeConnectionData.Where(n =>

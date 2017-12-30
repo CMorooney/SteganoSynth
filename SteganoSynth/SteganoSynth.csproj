@@ -94,11 +94,7 @@
     <Compile Include="Windows\MainWindow.designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Attributes\MiddleFrequenciesAttribute.cs" />
-    <Compile Include="Enums\Scale.cs" />
-    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Helpers\ScaleHelper.cs" />
-    <Compile Include="Attributes\FriendlyNameAttribute.cs" />
     <Compile Include="Windows\NodeEditorWindow.cs" />
     <Compile Include="Windows\NodeEditorWindow.designer.cs">
       <DependentUpon>NodeEditorWindow.cs</DependentUpon>
@@ -111,20 +107,15 @@
     <Compile Include="Views\NodeEditorView.designer.cs">
       <DependentUpon>NodeEditorView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Enums\ColorComponent.cs" />
-    <Compile Include="Enums\TargetModifier.cs" />
     <Compile Include="Views\Nodes\BaseNodeView.cs" />
     <Compile Include="Views\Nodes\SourceNodeView.cs" />
     <Compile Include="Views\Nodes\TargetNodeView.cs" />
     <Compile Include="Views\Nodes\NodePort.cs" />
-    <Compile Include="Attributes\ColorAttribute.cs" />
     <Compile Include="Models\NodeConnectionData.cs" />
     <Compile Include="Models\SynthSettings.cs" />
     <Compile Include="Helpers\ImageHelpers.cs" />
     <Compile Include="Models\FrequencyDictionary.cs" />
-    <Compile Include="Extensions\PrimitiveExtensions.cs" />
     <Compile Include="Helpers\SynthHelper.cs" />
-    <Compile Include="Services\RandomImageService.cs" />
     <Compile Include="SynthObjects\Synth.cs" />
     <Compile Include="Views\ViewWithABackgroundColorBecauseApparentlyThatsALotToAskFor.cs" />
     <Compile Include="Views\ViewWithABackgroundColorBecauseApparentlyThatsALotToAskFor.designer.cs">
@@ -138,6 +129,7 @@
     <Compile Include="Windows\InfoWindow.designer.cs">
       <DependentUpon>InfoWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\PlatformColorExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Windows\MainWindow.xib" />
@@ -151,19 +143,22 @@
     <Folder Include="Controllers\" />
     <Folder Include="Windows\" />
     <Folder Include="Menus\" />
-    <Folder Include="Attributes\" />
-    <Folder Include="Enums\" />
-    <Folder Include="Extensions\" />
     <Folder Include="Helpers\" />
     <Folder Include="Views\" />
     <Folder Include="Views\Nodes\" />
     <Folder Include="Models\" />
-    <Folder Include="Services\" />
     <Folder Include="SynthObjects\" />
     <Folder Include="Assets.xcassets\Play.imageset\" />
     <Folder Include="Assets.xcassets\Pause.imageset\" />
     <Folder Include="Assets.xcassets\Stop.imageset\" />
     <Folder Include="Assets.xcassets\Gradient.imageset\" />
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SteganoSynth.Core\SteganoSynth.Core.csproj">
+      <Project>{40D27086-E638-4CF1-AF0A-1D5921F774E9}</Project>
+      <Name>SteganoSynth.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>

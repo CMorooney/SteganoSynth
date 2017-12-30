@@ -1,4 +1,5 @@
 ﻿using System;
+using SteganoSynth.Core;
 
 namespace ImageMusic
 {
@@ -9,7 +10,10 @@ namespace ImageMusic
         public SourceNodeView(Enum componentType) : base(componentType)
         {
             ColorComponent = (ColorComponent)componentType;
-            NodeNameLabel.TextColor = ((ColorComponent)componentType).GetColor();
+
+            var color = ((ColorComponent)componentType).GetColor();
+
+            NodeNameLabel.TextColor = color.ToNSColor();
         }
 
         public override bool CanConnectToNode(BaseNodeView other)

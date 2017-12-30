@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Foundation;
 using AppKit;
 using System.Linq;
+using SteganoSynth.Core;
 
 namespace ImageMusic
 {
@@ -71,10 +72,12 @@ namespace ImageMusic
                     RandomImageSpinner.StartAnimation(this);
                 });
 
-                var image = await service.GetRandomImage();
+                var imageUrl = await service.GetRandomImage();
 
-                if (image != null)
+                if (imageUrl != null)
                 {
+                    var image = new NSImage(NSUrl.FromString(imageUrl.ToString()));
+
                     BeginInvokeOnMainThread(() => ImageCell.Image = image);
                     SetImage(image);
                 }
