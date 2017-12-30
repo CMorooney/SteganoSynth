@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using SteganoSynth.Core;
 
-namespace ImageMusic
+namespace SteganoSynth
 {
     public class SynthSettings
     {

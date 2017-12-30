@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SteganoSynth.Core;
 
-namespace ImageMusic
+namespace SteganoSynth
 {
     public partial class NodeEditorView : NSView
     {

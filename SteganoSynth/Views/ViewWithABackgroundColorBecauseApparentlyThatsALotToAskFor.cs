@@ -3,7 +3,7 @@ using Foundation;
 using AppKit;
 using CoreGraphics;
 
-namespace ImageMusic
+namespace SteganoSynth
 {
     public partial class ViewWithABackgroundColorBecauseApparentlyThatsALotToAskFor : NSView
     {

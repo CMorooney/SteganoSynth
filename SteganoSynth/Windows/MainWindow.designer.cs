@@ -1,4 +1,4 @@
-﻿namespace ImageMusic
+﻿namespace SteganoSynth
 {
     [global::Foundation.Register("MainWindow")]
     public partial class MainWindow

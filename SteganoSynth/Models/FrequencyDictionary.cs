@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ImageMusic
+namespace SteganoSynth
 {
     public class FrequencyDictionary : Dictionary<int, int[]>
     {

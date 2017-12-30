@@ -2,7 +2,7 @@
 using Foundation;
 using AppKit;
 
-namespace ImageMusic
+namespace SteganoSynth
 {
     public partial class MainWindow : NSWindow
     {

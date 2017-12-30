@@ -2,7 +2,7 @@
 using CoreGraphics;
 using AppKit;
 
-namespace ImageMusic
+namespace SteganoSynth
 {
     public class NodePort : NSView
     {

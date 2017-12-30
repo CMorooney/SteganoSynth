@@ -2,7 +2,7 @@
 using AppKit;
 using CoreGraphics;
 
-namespace ImageMusic
+namespace SteganoSynth
 {
     public static class ImageHelpers
     {

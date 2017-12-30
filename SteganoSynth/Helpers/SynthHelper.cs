@@ -2,7 +2,7 @@
 using AppKit;
 using SteganoSynth.Core;
 
-namespace ImageMusic
+namespace SteganoSynth
 {
     public static class SynthHelper
     {

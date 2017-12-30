@@ -5,7 +5,7 @@ using AppKit;
 using System.Linq;
 using SteganoSynth.Core;
 
-namespace ImageMusic
+namespace SteganoSynth
 {
     public partial class MainWindowController : NSWindowController
     {

@@ -1,7 +1,7 @@
 ﻿using AppKit;
 using Foundation;
 
-namespace ImageMusic
+namespace SteganoSynth
 {
     [Register("AppDelegate")]
     public class AppDelegate : NSApplicationDelegate

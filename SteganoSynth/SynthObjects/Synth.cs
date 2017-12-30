@@ -6,11 +6,11 @@ using AppKit;
 using AVFoundation;
 using CoreFoundation;
 using CoreGraphics;
-using static ImageMusic.SynthHelper;
+using static SteganoSynth.SynthHelper;
 using System.Runtime.InteropServices;
 using SteganoSynth.Core;
 
-namespace ImageMusic
+namespace SteganoSynth
 {
     public delegate void NotePlayedForColor(NSColor color);
 

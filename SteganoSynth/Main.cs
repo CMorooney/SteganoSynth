@@ -1,6 +1,6 @@
 ﻿using AppKit;
 
-namespace ImageMusic
+namespace SteganoSynth
 {
     static class MainClass
     {

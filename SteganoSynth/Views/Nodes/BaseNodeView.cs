@@ -3,7 +3,7 @@ using AppKit;
 using CoreGraphics;
 using SteganoSynth.Core;
 
-namespace ImageMusic
+namespace SteganoSynth
 {
     public abstract class BaseNodeView : NSView
     {

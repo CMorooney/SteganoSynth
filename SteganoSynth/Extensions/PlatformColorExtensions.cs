@@ -1,7 +1,7 @@
 ﻿using SteganoSynth.Core;
 using AppKit;
 
-namespace ImageMusic
+namespace SteganoSynth
 {
     public static class PlatformColorExtensions
     {

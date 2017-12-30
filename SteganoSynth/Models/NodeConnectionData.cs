@@ -1,6 +1,6 @@
 ﻿using CoreAnimation;
 
-namespace ImageMusic
+namespace SteganoSynth
 {
     public class NodeConnectionData
     {

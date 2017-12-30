@@ -1,4 +1,4 @@
-﻿namespace ImageMusic
+﻿namespace SteganoSynth
 {
 
     // Should subclass AppKit.NSView

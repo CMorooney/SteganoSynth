@@ -1,7 +1,7 @@
 ﻿using System;
 using SteganoSynth.Core;
 
-namespace ImageMusic
+namespace SteganoSynth
 {
     public class TargetNodeView : BaseNodeView
     {

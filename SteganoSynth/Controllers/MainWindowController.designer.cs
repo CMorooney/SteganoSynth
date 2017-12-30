@@ -1,4 +1,4 @@
-// WARNING
+﻿// WARNING
 //
 // This file has been generated automatically by Visual Studio to store outlets and
 // actions made in the UI designer. If it is removed, they will be lost.
@@ -7,13 +7,13 @@
 using Foundation;
 using System.CodeDom.Compiler;
 
-namespace ImageMusic
+namespace SteganoSynth
 {
 	[Register ("MainWindowController")]
 	partial class MainWindowController
 	{
 		[Outlet]
-		ImageMusic.ViewWithABackgroundColorBecauseApparentlyThatsALotToAskFor ColorIndicator { get; set; }
+		SteganoSynth.ViewWithABackgroundColorBecauseApparentlyThatsALotToAskFor ColorIndicator { get; set; }
 
 		[Outlet]
 		AppKit.NSTextField ErrorLabel { get; set; }
