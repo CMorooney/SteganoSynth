@@ -37,14 +37,15 @@
     <Compile Include="Extensions\PrimitiveExtensions.cs" />
     <Compile Include="Services\RandomImageService.cs" />
     <Compile Include="Attributes\ColorAttribute.cs" />
-    <Compile Include="Color.cs" />
     <Compile Include="Enums\ColorComponent.cs" />
+    <Compile Include="Models\Color.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Attributes\" />
     <Folder Include="Enums\" />
     <Folder Include="Extensions\" />
     <Folder Include="Services\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
